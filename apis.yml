@@ -1,0 +1,34 @@
+aid: snowplow
+name: Snowplow
+description: >-
+  Snowplow is an open source behavioral data platform for collecting, processing, and modeling event-level analytics data.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - API Analysis
+  - Behavioral Analytics
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/snowplow/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: snowplow:snowplow
+    name: Snowplow
+    description: >-
+      Snowplow is an open source behavioral data platform for collecting, processing, and modeling event-level analytics data.
+    humanURL: https://snowplow.io
+    tags:
+      - API Analysis
+      - Behavioral Analytics
+    properties:
+      - type: Documentation
+        url: https://docs.snowplow.io
+      - type: GitHubOrg
+        url: https://github.com/snowplow/snowplow
+common:
+  - type: Website
+    url: https://snowplow.io
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
