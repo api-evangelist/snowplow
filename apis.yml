@@ -7,12 +7,12 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - Analytics Platform
   - Behavioral Data
+  - Data Collection
   - Data Pipeline
   - Event Tracking
   - Open Source
-  - Data Collection
-  - Analytics Platform
 url: >-
   https://raw.githubusercontent.com/api-evangelist/snowplow/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -37,8 +37,8 @@ apis:
         url: https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications
     tags:
       - Behavioral Data
-      - Event Tracking
       - Data Pipeline
+      - Event Tracking
       - Open Source
 common:
   - type: Website
