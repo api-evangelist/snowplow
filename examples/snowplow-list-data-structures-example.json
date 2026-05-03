@@ -1,0 +1,71 @@
+{
+  "title": "List Data Structures",
+  "description": "Example request and response for listing Snowplow event schemas (data structures) via the Console API",
+  "request": {
+    "method": "GET",
+    "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/{organizationId}/data-structures/v1",
+    "headers": {
+      "Authorization": "Bearer {jwt_access_token}"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "hash": "a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4",
+        "vendor": "com.example",
+        "name": "page_view",
+        "format": "jsonschema",
+        "latestVersion": "1-0-0",
+        "deployments": [
+          {
+            "version": "1-0-0",
+            "environment": "PROD",
+            "deployedAt": "2026-04-15T10:30:00Z",
+            "deployedBy": "data-engineer@example.com"
+          }
+        ],
+        "meta": {
+          "description": "Tracks a user navigating to a page with custom product metadata",
+          "owner": "analytics-team",
+          "customData": {
+            "team": "growth",
+            "slack_channel": "#analytics-events"
+          }
+        },
+        "createdAt": "2026-03-01T09:00:00Z",
+        "updatedAt": "2026-04-15T10:30:00Z"
+      },
+      {
+        "hash": "b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5",
+        "vendor": "com.example",
+        "name": "add_to_cart",
+        "format": "jsonschema",
+        "latestVersion": "2-0-0",
+        "deployments": [
+          {
+            "version": "2-0-0",
+            "environment": "PROD",
+            "deployedAt": "2026-04-20T14:00:00Z",
+            "deployedBy": "data-engineer@example.com"
+          },
+          {
+            "version": "1-0-0",
+            "environment": "PROD",
+            "deployedAt": "2026-02-10T11:00:00Z",
+            "deployedBy": "data-engineer@example.com"
+          }
+        ],
+        "meta": {
+          "description": "Tracks a user adding a product to their shopping cart",
+          "owner": "ecommerce-team"
+        },
+        "createdAt": "2026-02-10T09:00:00Z",
+        "updatedAt": "2026-04-20T14:00:00Z"
+      }
+    ]
+  }
+}

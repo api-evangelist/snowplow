@@ -1,0 +1,196 @@
+name: Snowplow Vocabulary
+description: >-
+  Domain vocabulary for Snowplow's behavioral data platform covering event
+  tracking, data pipelines, schema management, enrichments, and the Console
+  API for programmatic governance of data structures and tracking plans.
+tags:
+  - Analytics Platform
+  - Behavioral Data
+  - Data Collection
+  - Data Pipeline
+  - Event Tracking
+  - Open Source
+created: '2026-05-02'
+modified: '2026-05-02'
+
+terms:
+  - term: Snowplow
+    definition: >-
+      An open-source and commercial behavioral data platform for collecting,
+      processing, and modeling high-quality event-level data from web, mobile,
+      server-side, and IoT sources. Known for its schema-first approach using
+      self-describing JSON and the Iglu schema registry.
+    tags:
+      - Platform
+
+  - term: Event
+    definition: >-
+      A discrete user action or system occurrence captured by a Snowplow tracker.
+      Events are the fundamental data unit in Snowplow. Types include page views,
+      page pings, structured events, self-describing events, and transactions.
+    tags:
+      - Core Concept
+
+  - term: Tracker
+    definition: >-
+      An SDK or library that generates Snowplow events and sends them to the
+      Collector. Snowplow provides trackers for JavaScript (web), iOS, Android,
+      Python, Java, Go, Ruby, .NET, PHP, Rust, and others.
+    tags:
+      - Core Concept
+      - SDK
+
+  - term: Collector
+    definition: >-
+      The Snowplow server component that receives events from trackers, sets
+      a network-level user identifier cookie, and forwards raw events to the
+      enrichment pipeline via a stream (Kinesis, Kafka, or PubSub).
+    tags:
+      - Infrastructure
+
+  - term: Enrich
+    definition: >-
+      The Snowplow pipeline component that validates events against their JSON
+      schemas, applies configured enrichments (IP geolocation, user agent parsing,
+      campaign attribution, custom JavaScript, API lookups), and writes validated
+      events to the enriched stream and failures to the bad events stream.
+    tags:
+      - Pipeline
+
+  - term: Self-Describing Event
+    definition: >-
+      A Snowplow event type that includes both the event data and a reference to
+      its JSON Schema in the Iglu registry. Self-describing events allow for
+      custom event types with structured, validated data beyond the standard
+      five-field structured event format.
+    tags:
+      - Core Concept
+      - Schema
+
+  - term: Structured Event
+    definition: >-
+      A Snowplow event type with five fixed fields: category, action, label,
+      property, and value. Useful for simple categorical tracking without
+      requiring a custom JSON Schema.
+    tags:
+      - Core Concept
+
+  - term: Context (Entity)
+    definition: >-
+      A self-describing JSON object attached to any Snowplow event to provide
+      additional context (e.g., the product being viewed, the user's session
+      properties, the A/B test variant). Multiple contexts can be attached to
+      a single event.
+    tags:
+      - Core Concept
+      - Schema
+
+  - term: Data Structure
+    definition: >-
+      In Snowplow's Console API, a data structure is a JSON Schema that defines
+      the shape of a self-describing event or context entity. Data structures
+      are versioned using SchemaVer and deployed to VALIDATED, DEV, and PROD
+      environments in the Iglu registry.
+    tags:
+      - API
+      - Schema Management
+
+  - term: SchemaVer
+    definition: >-
+      Snowplow's versioning scheme for JSON Schemas using major-minor-patch
+      format (e.g., 1-0-2). The format uses dashes instead of dots to distinguish
+      it from semantic versioning. Breaking changes require a major version bump.
+    tags:
+      - Schema Management
+      - Versioning
+
+  - term: Iglu
+    definition: >-
+      Snowplow's schema registry system for storing, serving, and validating
+      self-describing JSON Schemas. Iglu Central is the public registry;
+      customers can also run a private Iglu Server for custom schemas.
+      Schemas are referenced by Iglu URIs (iglu:vendor/name/format/version).
+    tags:
+      - Infrastructure
+      - Schema Management
+
+  - term: Iglu URI
+    definition: >-
+      A URI reference to a self-describing schema in the Iglu registry using
+      the format: iglu:{vendor}/{name}/{format}/{version}. Example:
+      iglu:com.example/add_to_cart/jsonschema/1-0-0.
+    tags:
+      - Schema Management
+
+  - term: Data Product (Snowplow)
+    definition: >-
+      In the Snowplow Console, a data product (also called a tracking plan) is
+      a logical grouping of event specifications for a product feature, team,
+      or business domain. Data products help teams collaborate on what events
+      to track and how they should be implemented.
+    tags:
+      - API
+      - Governance
+
+  - term: Event Specification
+    definition: >-
+      A specific event type defined within a Snowplow data product, including
+      its trigger context (where/when it fires), schema reference, and
+      implementation guidance for engineers.
+    tags:
+      - API
+      - Governance
+
+  - term: Enrichment
+    definition: >-
+      A processing step in the Snowplow Enrich component that adds or transforms
+      data on events. Examples: IP Lookups (adds geolocation), Campaign
+      Attribution (parses UTM parameters), JavaScript Enrichment (custom logic),
+      API Request Enrichment (external API data).
+    tags:
+      - Pipeline
+
+  - term: Bad Events Stream
+    definition: >-
+      Events that fail schema validation or enrichment processing are written
+      to a separate "bad events" stream/bucket for investigation and recovery.
+      Bad events include the original payload and the failure reason.
+    tags:
+      - Pipeline
+      - Quality
+
+  - term: Loader
+    definition: >-
+      A Snowplow component that reads validated events from the enriched stream
+      and loads them into a data warehouse (Snowflake, BigQuery, Redshift,
+      Databricks) or data lake (S3, GCS).
+    tags:
+      - Infrastructure
+      - Pipeline
+
+  - term: dbt Data Models (Snowplow)
+    definition: >-
+      Snowplow provides open-source dbt packages for transforming raw event
+      data into analytics-ready tables. Available models include web (page views,
+      sessions, users), mobile (screen views), e-commerce, media, and attribution.
+    tags:
+      - Analytics
+      - Data Modeling
+
+  - term: Page Ping
+    definition: >-
+      A Snowplow event type that tracks user engagement with a page. The
+      JavaScript tracker sends page pings at configurable intervals while a
+      user is actively engaged with a page, enabling time-on-page measurement.
+    tags:
+      - Core Concept
+      - Web Analytics
+
+  - term: Domain User ID
+    definition: >-
+      A first-party cookie-based user identifier set by Snowplow's JavaScript
+      tracker. Persists across sessions on the same domain and is the primary
+      anonymous user identifier for web tracking.
+    tags:
+      - Identity
+      - Privacy

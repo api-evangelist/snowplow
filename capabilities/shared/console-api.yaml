@@ -1,0 +1,226 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowplow Console API"
+  description: >-
+    The Snowplow Console API provides programmatic management of data structures
+    (JSON schemas), data products (tracking plans), event specifications, and
+    credentials for the Snowplow behavioral data platform. All requests are
+    scoped to an organization and authenticated with JWT bearer tokens.
+  tags:
+    - Analytics Platform
+    - Behavioral Data
+    - Data Management
+    - Event Tracking
+    - Snowplow
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWPLOW_API_KEY_ID: SNOWPLOW_API_KEY_ID
+      SNOWPLOW_API_KEY: SNOWPLOW_API_KEY
+      SNOWPLOW_JWT_TOKEN: SNOWPLOW_JWT_TOKEN
+      SNOWPLOW_ORG_ID: SNOWPLOW_ORG_ID
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowplow-console
+      baseUri: https://console.snowplowanalytics.com/api/msc/v1
+      description: "Snowplow Console API for behavioral data platform management"
+      authentication:
+        type: bearer
+        token: "{{SNOWPLOW_JWT_TOKEN}}"
+      resources:
+        - name: data-structures
+          path: /organizations/{{SNOWPLOW_ORG_ID}}/data-structures/v1
+          description: "List all data structures in the organization"
+          operations:
+            - name: list-data-structures
+              method: GET
+              description: "List Data Structures"
+              inputParameters:
+                - name: vendor
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by schema vendor"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: data-structure
+          path: /organizations/{{SNOWPLOW_ORG_ID}}/data-structures/v1/{dataStructureHash}
+          description: "Get a specific data structure by hash"
+          operations:
+            - name: get-data-structure
+              method: GET
+              description: "Get Data Structure"
+              inputParameters:
+                - name: dataStructureHash
+                  in: path
+                  type: string
+                  required: true
+                  description: "SHA-256 hash of the data structure"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: validate-data-structure
+          path: /organizations/{{SNOWPLOW_ORG_ID}}/data-structures/v1/validation-requests
+          description: "Validate a JSON schema before deployment"
+          operations:
+            - name: validate-data-structure
+              method: POST
+              description: "Validate Data Structure"
+              body:
+                type: json
+                data:
+                  meta: "{{tools.meta}}"
+                  data: "{{tools.schema}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: deploy-data-structure
+          path: /organizations/{{SNOWPLOW_ORG_ID}}/data-structures/v1/deployment-requests
+          description: "Deploy a data structure to a registry environment"
+          operations:
+            - name: deploy-data-structure
+              method: POST
+              description: "Deploy Data Structure"
+              body:
+                type: json
+                data:
+                  dataStructureHash: "{{tools.dataStructureHash}}"
+                  version: "{{tools.version}}"
+                  target: "{{tools.target}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: data-products
+          path: /organizations/{{SNOWPLOW_ORG_ID}}/data-products/v2
+          description: "List and create data products (tracking plans)"
+          operations:
+            - name: list-data-products
+              method: GET
+              description: "List Data Products"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-data-product
+              method: POST
+              description: "Create Data Product"
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  description: "{{tools.description}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: data-product
+          path: /organizations/{{SNOWPLOW_ORG_ID}}/data-products/v2/{dataProductId}
+          description: "Get a specific data product"
+          operations:
+            - name: get-data-product
+              method: GET
+              description: "Get Data Product"
+              inputParameters:
+                - name: dataProductId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Data product UUID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: data-structure-deployments
+          path: /organizations/{{SNOWPLOW_ORG_ID}}/data-structures/v1/{dataStructureHash}/deployments
+          description: "View deployment history for a data structure"
+          operations:
+            - name: get-data-structure-deployments
+              method: GET
+              description: "Get Data Structure Deployments"
+              inputParameters:
+                - name: dataStructureHash
+                  in: path
+                  type: string
+                  required: true
+                  description: "Data structure hash"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: snowplow-console-api
+      resources:
+        - path: /v1/data-structures
+          name: data-structures
+          description: "List all Snowplow data structures"
+          operations:
+            - method: GET
+              name: list-data-structures
+              description: "List Data Structures"
+              call: "snowplow-console.list-data-structures"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: snowplow-console-mcp
+      transport: http
+      tools:
+        - name: list-data-structures
+          description: "List all Snowplow data structures (JSON schemas) in the organization"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "snowplow-console.list-data-structures"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-data-structure
+          description: "Get a specific Snowplow data structure by its hash identifier"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "snowplow-console.get-data-structure"
+          with:
+            dataStructureHash: "tools.dataStructureHash"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-data-products
+          description: "List all Snowplow data products (tracking plans) in the organization"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "snowplow-console.list-data-products"
+          outputParameters:
+            - type: object
+              mapping: "$."

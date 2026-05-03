@@ -1,0 +1,123 @@
+{
+  "name": "Snowplow Data Pipeline Structure",
+  "description": "Hierarchical structure of Snowplow behavioral data pipeline components from event generation to data warehouse",
+  "version": "1.0",
+  "pipeline_stages": {
+    "1_Collection": {
+      "component": "Tracker",
+      "description": "SDKs and libraries that generate and send events to the Snowplow Collector",
+      "trackers": [
+        "JavaScript Tracker (web)",
+        "iOS Tracker",
+        "Android Tracker",
+        "Python Tracker",
+        "Java Tracker",
+        "Go Tracker",
+        "Ruby Tracker",
+        ".NET Tracker",
+        "PHP Tracker",
+        "Rust Tracker"
+      ],
+      "event_types": {
+        "PageView": "Tracks user navigating to a page",
+        "PagePing": "Tracks user staying on a page (engagement)",
+        "StructuredEvent": "Five-field categorical event (category, action, label, property, value)",
+        "SelfDescribingEvent": "Custom event with a self-describing JSON Schema",
+        "Transaction": "E-commerce transaction event",
+        "FormSubmit": "Form submission event"
+      },
+      "output": "Raw event payload (GET/POST to Collector endpoint)"
+    },
+    "2_Collection_Server": {
+      "component": "Collector",
+      "description": "Receives events from trackers, sets network cookies, forwards to enrichment",
+      "fields_added": ["collector_tstamp", "network_userid", "ip_address", "useragent"],
+      "output": "Raw events in Thrift format to Kinesis/Kafka/PubSub stream"
+    },
+    "3_Enrichment": {
+      "component": "Enrich",
+      "description": "Validates event schemas, applies enrichments, writes to enriched/bad streams",
+      "enrichments": {
+        "IP Anonymization": "Anonymize IP addresses",
+        "IP Lookups": "Geolocation (country, city, ISP) from IP",
+        "User Agent Parser": "Parse browser, OS, device from user agent",
+        "Campaign Attribution": "Parse UTM parameters",
+        "JavaScript Enrichment": "Custom JS-based enrichment logic",
+        "API Request Enrichment": "Enrich with external API data",
+        "SQL Query Enrichment": "Enrich with database lookup",
+        "IAB Spiders and Robots": "Detect bots",
+        "YAUAA (Yet Another UserAgent Analyzer)": "Advanced device detection",
+        "Currency Conversion": "Convert currency values",
+        "Weather Enrichment": "Add weather context from OpenWeather API"
+      },
+      "schema_validation": "Each self-describing event/entity is validated against its Iglu schema registry",
+      "output": "Enriched events in JSON format to enriched stream; failed events to bad stream"
+    },
+    "4_Storage": {
+      "component": "Loaders",
+      "description": "Load enriched events from the stream into data warehouses",
+      "destinations": [
+        "Snowflake (Snowflake Streaming Loader)",
+        "BigQuery (BigQuery Loader)",
+        "Redshift (RDB Loader)",
+        "Databricks (Databricks Loader)",
+        "S3 (S3 Loader for data lake)",
+        "GCS (GCS Loader for data lake)"
+      ]
+    },
+    "5_Modeling": {
+      "component": "Data Models",
+      "description": "dbt-based data models transform raw event data into analytics-ready tables",
+      "models": [
+        "Web model (page views, sessions, users)",
+        "Mobile model (screen views, sessions)",
+        "E-commerce model (transactions, products)",
+        "Attribution model",
+        "Custom models"
+      ]
+    }
+  },
+  "governance_layer": {
+    "DataStructure": {
+      "description": "A JSON Schema defining the shape of a self-describing event or entity",
+      "fields": {
+        "hash": "string (SHA-256 of vendor+name+format)",
+        "vendor": "string (reverse DNS, e.g., com.example)",
+        "name": "string (snake_case event name)",
+        "format": "string (jsonschema)",
+        "latestVersion": "string (SchemaVer: major-minor-patch)",
+        "deployedEnvironments": "array[enum: VALIDATED, DEV, PROD]"
+      }
+    },
+    "DataProduct": {
+      "description": "A tracking plan grouping related event specifications for a product feature or team",
+      "fields": {
+        "id": "string (UUID)",
+        "name": "string",
+        "description": "string",
+        "status": "enum: active | draft | deprecated",
+        "domain": "string",
+        "eventSpecificationCount": "integer"
+      },
+      "children": {
+        "EventSpecification": {
+          "description": "A specific event type with trigger context, schema reference, and implementation notes",
+          "fields": {
+            "id": "string (UUID)",
+            "name": "string",
+            "description": "string",
+            "schemaReference": "string (Iglu URI)",
+            "status": "enum: active | deprecated"
+          }
+        }
+      }
+    },
+    "SchemaRegistry": {
+      "description": "Iglu schema registry storing and serving JSON Schema definitions for validation",
+      "types": {
+        "Iglu Central": "Public registry for open-source schemas",
+        "Private Registry": "Customer-owned registry for custom schemas"
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+extends: spectral:oas
+rules:
+  # Operation ID naming
+  snowplow-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    message: "operationId '{{value}}' must be camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  # Organization scoped paths
+  snowplow-org-scoped-paths:
+    description: All Snowplow Console API paths should be scoped to an organization
+    message: "Path should include organizationId scope"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*/organizations/.*"
+
+  # Auth requirements
+  snowplow-security-defined:
+    description: Operations must define security (JWT bearer token)
+    message: "Operation must define security requirements"
+    severity: error
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: security
+      function: defined
+
+  # Tag requirements
+  snowplow-operation-tag:
+    description: All operations must have at least one tag
+    message: "Operation must have at least one tag"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  # Summary in Title Case
+  snowplow-operation-summary:
+    description: All operations must have a summary
+    message: "Operation must have a summary"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: summary
+      function: truthy
+
+  # Description requirements
+  snowplow-operation-description:
+    description: Operations should have a description
+    message: "Operation should have a description"
+    severity: info
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      field: description
+      function: truthy
+
+  # Path parameter defined
+  snowplow-path-params-required:
+    description: All path parameters must have required=true
+    message: "Path parameters must be required"
+    severity: error
+    given: "$.paths[*][*].parameters[?(@.in == 'path')]"
+    then:
+      field: required
+      function: truthy
+
+  # Version suffix in paths
+  snowplow-path-version-suffix:
+    description: Snowplow Console API uses version suffixes in resource paths (v1, v2)
+    message: "Resource paths should include version suffix"
+    severity: info
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*/v[0-9]+(/|$)"

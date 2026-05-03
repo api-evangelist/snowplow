@@ -1,0 +1,135 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "snow": "https://api-evangelist.github.io/snowplow/vocabulary/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "identifier": "schema:identifier",
+    "Organization": "schema:Organization",
+    "SoftwareApplication": "schema:SoftwareApplication",
+    "DataPipeline": {
+      "@id": "snow:DataPipeline",
+      "@type": "schema:SoftwareApplication"
+    },
+    "BehavioralEvent": {
+      "@id": "snow:BehavioralEvent",
+      "@type": "schema:Event"
+    },
+    "DataStructure": {
+      "@id": "snow:DataStructure",
+      "@type": "schema:DefinedTerm"
+    },
+    "DataProduct": {
+      "@id": "snow:DataProduct",
+      "@type": "schema:Dataset"
+    },
+    "EventSpecification": {
+      "@id": "snow:EventSpecification",
+      "@type": "schema:DefinedTerm"
+    },
+    "Tracker": {
+      "@id": "snow:Tracker",
+      "@type": "schema:SoftwareApplication"
+    },
+    "Collector": {
+      "@id": "snow:Collector",
+      "@type": "schema:SoftwareApplication"
+    },
+    "SchemaRegistry": {
+      "@id": "snow:SchemaRegistry",
+      "@type": "schema:DataCatalog"
+    },
+    "eventId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "eventType": {
+      "@id": "snow:eventType",
+      "@type": "xsd:string"
+    },
+    "appId": {
+      "@id": "snow:appId",
+      "@type": "xsd:string"
+    },
+    "platform": {
+      "@id": "snow:platform",
+      "@type": "xsd:string"
+    },
+    "collectorTimestamp": {
+      "@id": "snow:collectorTimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "deviceCreatedTimestamp": {
+      "@id": "snow:deviceCreatedTimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "derivedTimestamp": {
+      "@id": "snow:derivedTimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "userId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "domainUserId": {
+      "@id": "snow:domainUserId",
+      "@type": "xsd:string"
+    },
+    "sessionId": {
+      "@id": "snow:sessionId",
+      "@type": "xsd:string"
+    },
+    "pageUrl": {
+      "@id": "schema:url",
+      "@type": "xsd:anyURI"
+    },
+    "pageTitle": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "schemaVendor": {
+      "@id": "snow:schemaVendor",
+      "@type": "xsd:string"
+    },
+    "schemaName": {
+      "@id": "snow:schemaName",
+      "@type": "xsd:string"
+    },
+    "schemaVersion": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    "deployedEnvironment": {
+      "@id": "snow:deployedEnvironment",
+      "@type": "xsd:string"
+    },
+    "igluUri": {
+      "@id": "snow:igluUri",
+      "@type": "xsd:anyURI"
+    },
+    "organizationId": {
+      "@id": "snow:organizationId",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "geoCountry": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "geoCity": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    }
+  }
+}

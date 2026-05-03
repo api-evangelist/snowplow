@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.snowplow.io/schemas/snowplow/event.json",
+  "title": "Snowplow Event",
+  "description": "Schema for Snowplow behavioral event data collected via trackers and enriched by the Snowplow pipeline. Represents an enriched event with all standard fields.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique ID for the event"
+    },
+    "event": {
+      "type": "string",
+      "enum": ["page_view", "page_ping", "struct", "unstruct", "transaction", "transaction_item", "ad_impression"],
+      "description": "The type of event"
+    },
+    "app_id": {
+      "type": "string",
+      "description": "Application ID that triggered the event"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["web", "mob", "pc", "srv", "app", "tv", "cnsl", "iot"],
+      "description": "Platform the event was triggered on"
+    },
+    "collector_tstamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the event was received by the Snowplow Collector"
+    },
+    "dvce_created_tstamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the event was created on the device"
+    },
+    "dvce_sent_tstamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the event was sent by the tracker"
+    },
+    "derived_tstamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Calculated timestamp accounting for clock skew between device and collector"
+    },
+    "user_id": {
+      "type": ["string", "null"],
+      "description": "Unique ID set by the application's business logic"
+    },
+    "domain_userid": {
+      "type": ["string", "null"],
+      "description": "First-party cookie-based user identifier (UUID)"
+    },
+    "network_userid": {
+      "type": ["string", "null"],
+      "description": "Third-party cookie or fingerprint-based user identifier"
+    },
+    "session_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Client-side session identifier"
+    },
+    "session_index": {
+      "type": ["integer", "null"],
+      "description": "Session sequence number for the user"
+    },
+    "page_url": {
+      "type": ["string", "null"],
+      "description": "URL of the page where the event occurred"
+    },
+    "page_title": {
+      "type": ["string", "null"],
+      "description": "Title of the page where the event occurred"
+    },
+    "page_referrer": {
+      "type": ["string", "null"],
+      "description": "Referrer URL"
+    },
+    "useragent": {
+      "type": ["string", "null"],
+      "description": "Raw user agent string"
+    },
+    "br_name": {
+      "type": ["string", "null"],
+      "description": "Browser name"
+    },
+    "os_name": {
+      "type": ["string", "null"],
+      "description": "Operating system name"
+    },
+    "geo_country": {
+      "type": ["string", "null"],
+      "description": "ISO 3166-1 alpha-2 country code from IP geolocation"
+    },
+    "geo_city": {
+      "type": ["string", "null"],
+      "description": "City from IP geolocation"
+    },
+    "ip_address": {
+      "type": ["string", "null"],
+      "description": "IP address of the event sender"
+    },
+    "se_category": {
+      "type": ["string", "null"],
+      "description": "Structured event category"
+    },
+    "se_action": {
+      "type": ["string", "null"],
+      "description": "Structured event action"
+    },
+    "se_label": {
+      "type": ["string", "null"],
+      "description": "Structured event label"
+    },
+    "se_property": {
+      "type": ["string", "null"],
+      "description": "Structured event property"
+    },
+    "se_value": {
+      "type": ["number", "null"],
+      "description": "Structured event value"
+    },
+    "unstruct_event": {
+      "type": ["object", "null"],
+      "description": "Self-describing event payload with schema reference and data"
+    },
+    "contexts": {
+      "type": ["object", "null"],
+      "description": "Array of self-describing context entities attached to the event"
+    },
+    "enrichments": {
+      "type": ["object", "null"],
+      "description": "Enrichment data added during pipeline processing"
+    }
+  },
+  "required": ["event_id", "event", "app_id", "platform", "collector_tstamp"]
+}
