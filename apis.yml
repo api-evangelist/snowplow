@@ -91,6 +91,14 @@ common:
     url: https://docs.snowplow.io/docs/data-product-studio/data-products/api/
   - type: CredentialsAPI
     url: https://docs.snowplow.io/docs/account-management/
+  - type: Integrations
+    url: https://snowplow.io/partners
+integrations:
+  - name: Databricks
+  - name: Snowflake
+  - name: Google BigQuery
+  - name: Google Cloud Platform (GCP)
+  - name: Amazon S3
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
