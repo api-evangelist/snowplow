@@ -77,7 +77,7 @@ common:
     url: https://github.com/snowplow
   - type: Login
     url: https://console.snowplowanalytics.com
-  - type: Signup
+  - type: SignUp
     url: https://snowplow.io/get-started
   - type: Support
     url: https://snowplow.io/support
