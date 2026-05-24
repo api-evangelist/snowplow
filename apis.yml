@@ -89,6 +89,8 @@ common:
   url: https://docs.snowplow.io/docs/account-management/
 - type: Integrations
   url: https://snowplow.io/partners
+- type: LLMsTxt
+  url: https://docs.snowplow.io/llms.txt
 integrations:
 - name: Databricks
 - name: Snowflake
