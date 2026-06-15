@@ -1,0 +1,371 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowplow Console API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/credentials/v3/token",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchange API key credentials for a JWT access token. The returned token is used to authenticate all other Console API requests. Requires both X-API-Key-ID and X-API-Key headers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Structures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Data Structures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-structures/v1",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "vendor",
+                "value": "",
+                "type": "query",
+                "description": "Filter by schema vendor namespace"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by schema name"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all data structures (JSON schemas) in the organization. Supports optional filtering by vendor and schema name."
+        },
+        {
+          "info": {
+            "name": "Get Data Structure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-structures/v1/:dataStructureHash",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataStructureHash",
+                "value": "",
+                "type": "path",
+                "description": "The SHA-256 hash identifier of the data structure"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific data structure by its SHA-256 hash identifier, including all versions and metadata."
+        },
+        {
+          "info": {
+            "name": "Get Data Structure Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-structures/v1/:dataStructureHash/versions/:versionNumber",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataStructureHash",
+                "value": "",
+                "type": "path",
+                "description": "The SHA-256 hash identifier of the data structure"
+              },
+              {
+                "name": "versionNumber",
+                "value": "",
+                "type": "path",
+                "description": "The version number (e.g., 1-0-0)"
+              }
+            ]
+          },
+          "docs": "Fetch a specific version of a data structure including the full JSON schema for that version number."
+        },
+        {
+          "info": {
+            "name": "Validate Data Structure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-structures/v1/validation-requests",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate that a schema is in proper JSON format and complies with warehouse (Redshift, Snowflake, BigQuery, Databricks) requirements before deployment."
+        },
+        {
+          "info": {
+            "name": "Get Data Structure Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-structures/v1/:dataStructureHash/deployments",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataStructureHash",
+                "value": "",
+                "type": "path",
+                "description": "The SHA-256 hash identifier of the data structure"
+              }
+            ]
+          },
+          "docs": "View the deployment history for a data structure across VALIDATED, DEV, and PROD environments."
+        },
+        {
+          "info": {
+            "name": "Deploy Data Structure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-structures/v1/deployment-requests",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploy a data structure to a registry environment. Environments progress from VALIDATED → DEV → PROD. Each deployment makes the schema available to Snowplow pipelines in that environment."
+        },
+        {
+          "info": {
+            "name": "Update Data Structure Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-structures/v1/:dataStructureHash/meta",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataStructureHash",
+                "value": "",
+                "type": "path",
+                "description": "The SHA-256 hash identifier of the data structure"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the metadata and customData properties for a data structure, such as description, owner, and custom fields."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Data Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              }
+            ]
+          },
+          "docs": "Retrieve a comprehensive list of all data products (tracking plans) in the organization, including their associated event specifications."
+        },
+        {
+          "info": {
+            "name": "Create Data Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data product (tracking plan) with a name and optional description and domain metadata."
+        },
+        {
+          "info": {
+            "name": "Get Data Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2/:dataProductId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataProductId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data product"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific data product including all associated event specifications."
+        },
+        {
+          "info": {
+            "name": "Update Data Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2/:dataProductId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataProductId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data product"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing data product. Requires a status field in the request body."
+        },
+        {
+          "info": {
+            "name": "Get Data Product History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2/:dataProductId/history",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataProductId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data product"
+              }
+            ]
+          },
+          "docs": "Fetch the change log for a data product with filtering options by date range and change type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

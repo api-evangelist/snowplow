@@ -2,6 +2,13 @@
   "repo": "snowplow",
   "feeds": [
     {
+      "source": "https://snowplow.io/blog",
+      "feed_url": "https://snowplow.io/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://docs.snowplow.io",
       "feed_url": "https://docs.snowplow.io",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
+  "fetched": "2026-06-14T20:42:17Z",
   "post_count": 0
 }

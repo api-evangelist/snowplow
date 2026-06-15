@@ -1,48 +1,90 @@
-# Snowplow
+# Snowplow (snowplow)
 
-Snowplow is a behavioral data platform that enables organizations to collect, process, and model granular event-level data from web, mobile, and server-side sources. The platform uses a schema-first approach with self-describing JSON events validated against the Iglu schema registry. The Snowplow Console API provides programmatic governance of data structures (schemas), data products (tracking plans), and event specifications.
+Snowplow is a behavioral data platform that enables organizations to collect, process, and model granular event-level data from web, mobile, and server-side sources, providing a data pipeline for analytics and AI use cases. The platform uses a schema-first approach with self-describing JSON events validated against the Iglu schema registry. The Snowplow Console API provides programmatic governance of data structures (schemas), data products (tracking plans), and event specifications.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/snowplow/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/snowplow/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+
+## Tags
+
+- Analytics Platform
+- Behavioral Data
+- Data Collection
+- Data Engineering
+- Data Pipeline
+- Event Tracking
+- Open Source
+
+## Timestamps
+
+- **Created:** 2026-03-26
+- **Modified:** 2026-05-19
 
 ## APIs
 
-- [Snowplow Console API](https://docs.snowplow.io/docs/event-studio/programmatic-management/) - Programmatic management of data structures (event schemas), data products (tracking plans), event specifications, and credentials via REST API.
-- [Snowplow Tracker SDKs](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications) - Tracker SDKs for JavaScript, iOS, Android, Python, Java, Go, Ruby, .NET, PHP, and Rust.
+### Snowplow Console API
 
-## Properties
+The Snowplow Console API provides programmatic management of the Snowplow behavioral data platform. Covers data structures (JSON schemas for event validation), data products (tracking plans), event specifications, and credentials. All endpoints are scoped to an organization and require JWT bearer authentication. Accessible via Swagger UI at https://console.snowplowanalytics.com/api/msc/v1/docs/.
 
+- **Human URL:** [https://docs.snowplow.io/docs/event-studio/programmatic-management/](https://docs.snowplow.io/docs/event-studio/programmatic-management/)
+
+#### Tags
+
+- Analytics Platform
+- Data Governance
+- Data Structures
+- Schema Management
+
+#### Properties
+
+- [Documentation](https://docs.snowplow.io/docs/event-studio/programmatic-management/)
+- [Swagger U I](https://console.snowplowanalytics.com/api/msc/v1/docs/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/snowplow/refs/heads/main/openapi/snowplow-console-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/snowplow-console-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/snowplow-console-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Snowplow Tracker SDKs
+
+Snowplow provides tracker SDKs for all major platforms including JavaScript (web), iOS, Android, Python, Java, Go, Ruby, .NET, PHP, and Rust. Trackers generate self-describing events and send them to the Snowplow Collector. All trackers support self-describing events, contexts, page views, structured events, and session tracking.
+
+- **Human URL:** [https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications)
+
+#### Tags
+
+- Analytics
+- Event Tracking
+- SDK
+
+#### Properties
+
+- [Documentation](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications)
+- [Git Hub Org](https://github.com/snowplow)
+- [Postman Collection](collections/snowplow-console-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/snowplow-console-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [LinkedIn](https://www.linkedin.com/company/snowplow)
 - [Website](https://snowplow.io)
 - [Documentation](https://docs.snowplow.io)
-- [GitHub Organization](https://github.com/snowplow)
-- [Console](https://console.snowplowanalytics.com)
+- [Blog](https://snowplow.io/blog)
+- [Pricing](https://snowplow.io/pricing)
+- [Git Hub](https://github.com/snowplow)
+- [Login](https://console.snowplowanalytics.com)
+- [Sign Up](https://snowplow.io/get-started)
+- [Support](https://snowplow.io/support)
+- [Getting Started](https://docs.snowplow.io/docs/getting-started-on-snowplow-open-source)
 - [Community](https://discourse.snowplow.io)
-- [Swagger UI](https://console.snowplowanalytics.com/api/msc/v1/docs/)
+- [Data Structures A P I](https://docs.snowplow.io/docs/data-product-studio/data-structures/manage/api/)
+- [Tracking Plans A P I](https://docs.snowplow.io/docs/data-product-studio/data-products/api/)
+- [Credentials A P I](https://docs.snowplow.io/docs/account-management/)
+- [Integrations](https://snowplow.io/partners)
+- [L L Ms Txt](https://docs.snowplow.io/llms.txt)
 
-## Artifacts
+## Maintainers
 
-### OpenAPI
-- [snowplow-console-api-openapi.yml](openapi/snowplow-console-api-openapi.yml) — Snowplow Console API (Authentication, Data Structures, Data Products, Deployment)
-
-### Rules
-- [snowplow-rules.yml](rules/snowplow-rules.yml) — Spectral ruleset enforcing Snowplow Console API conventions (org-scoped paths, versioned resources, JWT auth)
-
-### Capabilities
-- [data-pipeline-governance.yaml](capabilities/data-pipeline-governance.yaml) — Unified workflow for Snowplow schema lifecycle management and tracking plan governance
-
-#### Shared Definitions
-- [capabilities/shared/console-api.yaml](capabilities/shared/console-api.yaml) — Snowplow Console API shared capability definition
-
-### JSON Schema
-- [snowplow-event-schema.json](json-schema/snowplow-event-schema.json) — Schema for enriched Snowplow behavioral events (all standard fields)
-- [snowplow-data-structure-schema.json](json-schema/snowplow-data-structure-schema.json) — Schema for Snowplow data structure (event schema) management objects
-
-### JSON Structure
-- [snowplow-pipeline-structure.json](json-structure/snowplow-pipeline-structure.json) — Hierarchical structure of Snowplow data pipeline components from tracker to data warehouse
-
-### JSON-LD
-- [snowplow-context.jsonld](json-ld/snowplow-context.jsonld) — JSON-LD context for Snowplow behavioral data and event tracking linked data semantics
-
-### Examples
-- [snowplow-list-data-structures-example.json](examples/snowplow-list-data-structures-example.json) — List event schemas (data structures) in a Snowplow organization
-- [snowplow-deploy-data-structure-example.json](examples/snowplow-deploy-data-structure-example.json) — Deploy a validated event schema to the PROD environment
-
-### Vocabulary
-- [snowplow-vocabulary.yml](vocabulary/snowplow-vocabulary.yml) — Domain vocabulary covering Snowplow events, trackers, enrichments, Iglu schemas, and data governance concepts
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
