@@ -3,19 +3,12 @@
   "feeds": [
     {
       "source": "https://snowplow.io/blog",
-      "feed_url": "https://snowplow.io/blog",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://docs.snowplow.io",
-      "feed_url": "https://docs.snowplow.io",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
-  "post_count": 0
+  "post_count": 0,
+  "fetched": "2026-06-27T13:10:20Z",
+  "agent_pulled": "2026-06-27"
 }

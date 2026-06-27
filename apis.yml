@@ -73,7 +73,7 @@ common:
     url: https://github.com/snowplow
   - type: Login
     url: https://console.snowplowanalytics.com
-  - type: SignUp
+  - type: Signup
     url: https://snowplow.io/get-started
   - type: Support
     url: https://snowplow.io/support
@@ -89,7 +89,7 @@ common:
     url: https://docs.snowplow.io/docs/account-management/
   - type: Integrations
     url: https://snowplow.io/partners
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.snowplow.io/llms.txt
 integrations:
   - name: Databricks
