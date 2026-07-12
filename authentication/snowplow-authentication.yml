@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/snowplow-console-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT token obtained from the Credentials API (/credentials/v3/token)
+  sources:
+  - openapi/snowplow-console-api-openapi.yml

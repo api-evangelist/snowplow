@@ -59,6 +59,12 @@ apis:
       - type: GitHubOrg
         url: https://github.com/snowplow
 common:
+  - type: TrustCenter
+    url: security/snowplow-trust-center.yml
+  - type: DomainSecurity
+    url: security/snowplow-domain-security.yml
+  - type: Authentication
+    url: authentication/snowplow-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/snowplow
   - type: Website
