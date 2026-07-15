@@ -59,6 +59,8 @@ apis:
       - type: GitHubOrg
         url: https://github.com/snowplow
 common:
+  - type: AgenticAccess
+    url: agentic-access/snowplow-agentic-access.yml
   - type: TrustCenter
     url: security/snowplow-trust-center.yml
   - type: DomainSecurity
