@@ -1,0 +1,365 @@
+openapi: 3.1.0
+info:
+  title: Snowplow Console Authentication Data Structures API
+  description: The Snowplow Console API provides programmatic management of the Snowplow behavioral data platform. Covers data structures (JSON schemas), data products (tracking plans), event specifications, and credentials management. All endpoints are scoped to an organization and require JWT bearer authentication obtained via the Credentials API.
+  version: '1.0'
+  contact:
+    name: Snowplow Support
+    url: https://snowplow.io/support
+  termsOfService: https://snowplow.io/terms-of-service
+servers:
+- url: https://console.snowplowanalytics.com/api/msc/v1
+  description: Snowplow Console API
+security:
+- bearerAuth: []
+tags:
+- name: Data Structures
+  description: Manage JSON Schema data structures (event schemas) in Snowplow. Data structures define the shape of events tracked in your pipeline. Supports versioning, validation, and deployment to dev/prod registries.
+paths:
+  /organizations/{organizationId}/data-structures/v1:
+    get:
+      operationId: listDataStructures
+      summary: List Data Structures
+      description: Retrieve a list of all data structures (JSON schemas) in the organization. Supports optional filtering by vendor and schema name.
+      tags:
+      - Data Structures
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - name: vendor
+        in: query
+        description: Filter by schema vendor namespace
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: Filter by schema name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of data structures returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataStructure'
+        '401':
+          description: Unauthorized - invalid or expired token
+        '403':
+          description: Forbidden - insufficient permissions
+  /organizations/{organizationId}/data-structures/v1/{dataStructureHash}:
+    get:
+      operationId: getDataStructure
+      summary: Get Data Structure
+      description: Retrieve a specific data structure by its SHA-256 hash identifier, including all versions and metadata.
+      tags:
+      - Data Structures
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/dataStructureHash'
+      responses:
+        '200':
+          description: Data structure retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataStructure'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Data structure not found
+  /organizations/{organizationId}/data-structures/v1/{dataStructureHash}/versions/{versionNumber}:
+    get:
+      operationId: getDataStructureVersion
+      summary: Get Data Structure Version
+      description: Fetch a specific version of a data structure including the full JSON schema for that version number.
+      tags:
+      - Data Structures
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/dataStructureHash'
+      - name: versionNumber
+        in: path
+        required: true
+        description: The version number (e.g., 1-0-0)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Data structure version retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataStructureVersion'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Version not found
+  /organizations/{organizationId}/data-structures/v1/validation-requests:
+    post:
+      operationId: validateDataStructure
+      summary: Validate Data Structure
+      description: Validate that a schema is in proper JSON format and complies with warehouse (Redshift, Snowflake, BigQuery, Databricks) requirements before deployment.
+      tags:
+      - Data Structures
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidationRequest'
+      responses:
+        '200':
+          description: Validation result returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '400':
+          description: Invalid schema format
+        '401':
+          description: Unauthorized
+  /organizations/{organizationId}/data-structures/v1/{dataStructureHash}/deployments:
+    get:
+      operationId: getDataStructureDeployments
+      summary: Get Data Structure Deployments
+      description: View the deployment history for a data structure across VALIDATED, DEV, and PROD environments.
+      tags:
+      - Data Structures
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/dataStructureHash'
+      responses:
+        '200':
+          description: Deployment history retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Deployment'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Data structure not found
+  /organizations/{organizationId}/data-structures/v1/deployment-requests:
+    post:
+      operationId: deployDataStructure
+      summary: Deploy Data Structure
+      description: Deploy a data structure to a registry environment. Environments progress from VALIDATED → DEV → PROD. Each deployment makes the schema available to Snowplow pipelines in that environment.
+      tags:
+      - Data Structures
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentRequest'
+      responses:
+        '200':
+          description: Deployment request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+        '400':
+          description: Invalid deployment request
+        '401':
+          description: Unauthorized
+        '409':
+          description: Schema version already deployed to this environment
+  /organizations/{organizationId}/data-structures/v1/{dataStructureHash}/meta:
+    put:
+      operationId: updateDataStructureMeta
+      summary: Update Data Structure Metadata
+      description: Update the metadata and customData properties for a data structure, such as description, owner, and custom fields.
+      tags:
+      - Data Structures
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/dataStructureHash'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataStructureMetaUpdate'
+      responses:
+        '200':
+          description: Metadata updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataStructure'
+        '400':
+          description: Invalid metadata
+        '401':
+          description: Unauthorized
+        '404':
+          description: Data structure not found
+components:
+  schemas:
+    DataStructureMetaUpdate:
+      type: object
+      properties:
+        description:
+          type: string
+        owner:
+          type: string
+        customData:
+          type: object
+    ValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              location:
+                type: string
+    DeploymentRequest:
+      type: object
+      required:
+      - dataStructureHash
+      - version
+      - target
+      properties:
+        dataStructureHash:
+          type: string
+        version:
+          type: string
+        target:
+          type: string
+          enum:
+          - VALIDATED
+          - DEV
+          - PROD
+    DataStructure:
+      type: object
+      properties:
+        hash:
+          type: string
+          description: SHA-256 hash identifier of the data structure
+        vendor:
+          type: string
+          description: The vendor namespace for the schema (e.g., com.example)
+        name:
+          type: string
+          description: The schema name
+        format:
+          type: string
+          enum:
+          - jsonschema
+          description: The schema format
+        latestVersion:
+          type: string
+          description: The latest version number (e.g., 1-0-2)
+        deployments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
+        meta:
+          type: object
+          properties:
+            description:
+              type: string
+            owner:
+              type: string
+            customData:
+              type: object
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ValidationRequest:
+      type: object
+      required:
+      - meta
+      - data
+      properties:
+        meta:
+          type: object
+          properties:
+            vendor:
+              type: string
+            name:
+              type: string
+            format:
+              type: string
+            version:
+              type: string
+        data:
+          type: object
+          description: The JSON Schema to validate
+    Deployment:
+      type: object
+      properties:
+        version:
+          type: string
+        environment:
+          type: string
+          enum:
+          - VALIDATED
+          - DEV
+          - PROD
+        deployedAt:
+          type: string
+          format: date-time
+        deployedBy:
+          type: string
+    DataStructureVersion:
+      type: object
+      properties:
+        hash:
+          type: string
+        version:
+          type: string
+          description: Version number in format major-minor-patch (e.g., 1-0-0)
+        schema:
+          type: object
+          description: The full JSON Schema definition for this version
+        deployedEnvironments:
+          type: array
+          items:
+            type: string
+            enum:
+            - VALIDATED
+            - DEV
+            - PROD
+  parameters:
+    dataStructureHash:
+      name: dataStructureHash
+      in: path
+      required: true
+      description: The SHA-256 hash identifier of the data structure
+      schema:
+        type: string
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Credentials API (/credentials/v3/token)
+externalDocs:
+  description: Snowplow Console API Documentation (Swagger UI)
+  url: https://console.snowplowanalytics.com/api/msc/v1/docs/

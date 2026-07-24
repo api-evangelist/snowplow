@@ -1,0 +1,227 @@
+openapi: 3.1.0
+info:
+  title: Snowplow Console Authentication Data Products API
+  description: The Snowplow Console API provides programmatic management of the Snowplow behavioral data platform. Covers data structures (JSON schemas), data products (tracking plans), event specifications, and credentials management. All endpoints are scoped to an organization and require JWT bearer authentication obtained via the Credentials API.
+  version: '1.0'
+  contact:
+    name: Snowplow Support
+    url: https://snowplow.io/support
+  termsOfService: https://snowplow.io/terms-of-service
+servers:
+- url: https://console.snowplowanalytics.com/api/msc/v1
+  description: Snowplow Console API
+security:
+- bearerAuth: []
+tags:
+- name: Data Products
+  description: Manage data products (tracking plans) which organize event specifications and define the behavioral data strategy for a product or feature.
+paths:
+  /organizations/{organizationId}/data-products/v2:
+    get:
+      operationId: listDataProducts
+      summary: List Data Products
+      description: Retrieve a comprehensive list of all data products (tracking plans) in the organization, including their associated event specifications.
+      tags:
+      - Data Products
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      responses:
+        '200':
+          description: List of data products returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataProduct'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createDataProduct
+      summary: Create Data Product
+      description: Create a new data product (tracking plan) with a name and optional description and domain metadata.
+      tags:
+      - Data Products
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataProductCreate'
+      responses:
+        '201':
+          description: Data product created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataProduct'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /organizations/{organizationId}/data-products/v2/{dataProductId}:
+    get:
+      operationId: getDataProduct
+      summary: Get Data Product
+      description: Retrieve details for a specific data product including all associated event specifications.
+      tags:
+      - Data Products
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/dataProductId'
+      responses:
+        '200':
+          description: Data product retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataProduct'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Data product not found
+    post:
+      operationId: updateDataProduct
+      summary: Update Data Product
+      description: Update an existing data product. Requires a status field in the request body.
+      tags:
+      - Data Products
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/dataProductId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataProductUpdate'
+      responses:
+        '200':
+          description: Data product updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataProduct'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Data product not found
+  /organizations/{organizationId}/data-products/v2/{dataProductId}/history:
+    get:
+      operationId: getDataProductHistory
+      summary: Get Data Product History
+      description: Fetch the change log for a data product with filtering options by date range and change type.
+      tags:
+      - Data Products
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      - $ref: '#/components/parameters/dataProductId'
+      responses:
+        '200':
+          description: Change history retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoryEntry'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Data product not found
+components:
+  parameters:
+    dataProductId:
+      name: dataProductId
+      in: path
+      required: true
+      description: The unique identifier of the data product
+      schema:
+        type: string
+        format: uuid
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    DataProductCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        domain:
+          type: string
+    HistoryEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        user:
+          type: string
+        changeType:
+          type: string
+        description:
+          type: string
+    DataProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - draft
+          - deprecated
+        domain:
+          type: string
+        eventSpecificationCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    DataProductUpdate:
+      type: object
+      required:
+      - status
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - draft
+          - deprecated
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from the Credentials API (/credentials/v3/token)
+externalDocs:
+  description: Snowplow Console API Documentation (Swagger UI)
+  url: https://console.snowplowanalytics.com/api/msc/v1/docs/
