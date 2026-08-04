@@ -1,0 +1,1794 @@
+{
+  "info": {
+    "_postman_id": "4f67e9a3-de51-4deb-a072-a582090b70dc",
+    "name": "Snowplow Console Authentication Data Structures API",
+    "description": "The Snowplow Console API provides programmatic management of the Snowplow behavioral data platform. Covers data structures (JSON schemas), data products (tracking plans), event specifications, and credentials management. All endpoints are scoped to an organization and require JWT bearer authentication obtained via the Credentials API.\n\nContact Support:\n Name: Snowplow Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:16.000Z",
+    "updatedAt": "2026-07-28T02:57:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4f67e9a3-de51-4deb-a072-a582090b70dc"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organizationId}",
+          "item": [
+            {
+              "name": "data-structures",
+              "item": [
+                {
+                  "name": "v1",
+                  "item": [
+                    {
+                      "name": "{dataStructureHash}",
+                      "item": [
+                        {
+                          "name": "versions",
+                          "item": [
+                            {
+                              "name": "{versionNumber}",
+                              "item": [
+                                {
+                                  "name": "Get Data Structure Version",
+                                  "id": "f5039949-417b-4d38-a204-da698b229720",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/versions/:versionNumber",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-structures",
+                                        "v1",
+                                        ":dataStructureHash",
+                                        "versions",
+                                        ":versionNumber"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "7d93b80c-8e1e-4947-a814-07718c66a11f",
+                                          "key": "organizationId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The Snowplow organization UUID"
+                                        },
+                                        {
+                                          "id": "274b6bde-62ac-419a-ae4b-c78b835201a3",
+                                          "key": "dataStructureHash",
+                                          "value": "<string>",
+                                          "description": "(Required) The SHA-256 hash identifier of the data structure"
+                                        },
+                                        {
+                                          "id": "bb4e0e1a-5cf6-44d1-b0a6-b5d5f6eaa1ff",
+                                          "key": "versionNumber",
+                                          "value": "<string>",
+                                          "description": "(Required) The version number (e.g., 1-0-0)"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Fetch a specific version of a data structure including the full JSON schema for that version number."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "d6285d29-8bbb-432a-a8ff-cd0529914b86",
+                                      "name": "Data structure version retrieved successfully",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/versions/:versionNumber",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":organizationId",
+                                            "data-structures",
+                                            "v1",
+                                            ":dataStructureHash",
+                                            "versions",
+                                            ":versionNumber"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organizationId"
+                                            },
+                                            {
+                                              "key": "dataStructureHash"
+                                            },
+                                            {
+                                              "key": "versionNumber"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"hash\": \"<string>\",\n  \"version\": \"<string>\",\n  \"schema\": {},\n  \"deployedEnvironments\": [\n    \"DEV\",\n    \"VALIDATED\"\n  ]\n}",
+                                      "createdAt": "2026-07-28T02:57:16.000Z",
+                                      "updatedAt": "2026-07-28T02:57:16.000Z",
+                                      "uid": "35240-d6285d29-8bbb-432a-a8ff-cd0529914b86"
+                                    },
+                                    {
+                                      "id": "20e39cea-465c-4aea-801c-84a6c1d738d0",
+                                      "name": "Unauthorized",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/versions/:versionNumber",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":organizationId",
+                                            "data-structures",
+                                            "v1",
+                                            ":dataStructureHash",
+                                            "versions",
+                                            ":versionNumber"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organizationId"
+                                            },
+                                            {
+                                              "key": "dataStructureHash"
+                                            },
+                                            {
+                                              "key": "versionNumber"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T02:57:16.000Z",
+                                      "updatedAt": "2026-07-28T02:57:16.000Z",
+                                      "uid": "35240-20e39cea-465c-4aea-801c-84a6c1d738d0"
+                                    },
+                                    {
+                                      "id": "5705db32-2404-41fc-83ef-382b21a083f6",
+                                      "name": "Version not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/versions/:versionNumber",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":organizationId",
+                                            "data-structures",
+                                            "v1",
+                                            ":dataStructureHash",
+                                            "versions",
+                                            ":versionNumber"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organizationId"
+                                            },
+                                            {
+                                              "key": "dataStructureHash"
+                                            },
+                                            {
+                                              "key": "versionNumber"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T02:57:16.000Z",
+                                      "updatedAt": "2026-07-28T02:57:16.000Z",
+                                      "uid": "35240-5705db32-2404-41fc-83ef-382b21a083f6"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:57:16.000Z",
+                                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                                  "uid": "35240-f5039949-417b-4d38-a204-da698b229720"
+                                }
+                              ],
+                              "id": "b056de6e-dca8-4597-855e-64e4ce2c1f3e",
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-b056de6e-dca8-4597-855e-64e4ce2c1f3e"
+                            }
+                          ],
+                          "id": "08b308a7-471a-422a-8ab3-ded724a9e34e",
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-08b308a7-471a-422a-8ab3-ded724a9e34e"
+                        },
+                        {
+                          "name": "deployments",
+                          "item": [
+                            {
+                              "name": "Get Data Structure Deployments",
+                              "id": "7dd5c437-67a0-434d-ba8a-d5759e9a29f8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/deployments",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    ":dataStructureHash",
+                                    "deployments"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ce171173-6c34-4b6f-8a04-c7fea638ba10",
+                                      "key": "organizationId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The Snowplow organization UUID"
+                                    },
+                                    {
+                                      "id": "9f5fd3de-bf97-4d88-b589-f569cecd8b48",
+                                      "key": "dataStructureHash",
+                                      "value": "<string>",
+                                      "description": "(Required) The SHA-256 hash identifier of the data structure"
+                                    }
+                                  ]
+                                },
+                                "description": "View the deployment history for a data structure across VALIDATED, DEV, and PROD environments."
+                              },
+                              "response": [
+                                {
+                                  "id": "b9f7dfa2-fbbc-41bb-8776-08701b93ef0b",
+                                  "name": "Deployment history retrieved successfully",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/deployments",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-structures",
+                                        "v1",
+                                        ":dataStructureHash",
+                                        "deployments"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataStructureHash"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"version\": \"<string>\",\n    \"environment\": \"PROD\",\n    \"deployedAt\": \"<dateTime>\",\n    \"deployedBy\": \"<string>\"\n  },\n  {\n    \"version\": \"<string>\",\n    \"environment\": \"PROD\",\n    \"deployedAt\": \"<dateTime>\",\n    \"deployedBy\": \"<string>\"\n  }\n]",
+                                  "createdAt": "2026-07-28T02:57:16.000Z",
+                                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                                  "uid": "35240-b9f7dfa2-fbbc-41bb-8776-08701b93ef0b"
+                                },
+                                {
+                                  "id": "6557b845-2fa6-4ad4-841e-e44c4c80bcfa",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/deployments",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-structures",
+                                        "v1",
+                                        ":dataStructureHash",
+                                        "deployments"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataStructureHash"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:57:16.000Z",
+                                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                                  "uid": "35240-6557b845-2fa6-4ad4-841e-e44c4c80bcfa"
+                                },
+                                {
+                                  "id": "24b5ca65-f54f-4d16-bee1-0e65386e494a",
+                                  "name": "Data structure not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/deployments",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-structures",
+                                        "v1",
+                                        ":dataStructureHash",
+                                        "deployments"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataStructureHash"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:57:16.000Z",
+                                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                                  "uid": "35240-24b5ca65-f54f-4d16-bee1-0e65386e494a"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-7dd5c437-67a0-434d-ba8a-d5759e9a29f8"
+                            }
+                          ],
+                          "id": "9416e548-8608-4a9b-9738-e6a82ac92de8",
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-9416e548-8608-4a9b-9738-e6a82ac92de8"
+                        },
+                        {
+                          "name": "meta",
+                          "item": [
+                            {
+                              "name": "Update Data Structure Metadata",
+                              "id": "c0f8db9d-ea69-47e3-9269-2a05b5027c74",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"description\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"customData\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/meta",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    ":dataStructureHash",
+                                    "meta"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "99884df7-2e50-4f61-b338-61323353ebcb",
+                                      "key": "organizationId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The Snowplow organization UUID"
+                                    },
+                                    {
+                                      "id": "00840cf8-7ede-476b-a7a8-a5e9232246df",
+                                      "key": "dataStructureHash",
+                                      "value": "<string>",
+                                      "description": "(Required) The SHA-256 hash identifier of the data structure"
+                                    }
+                                  ]
+                                },
+                                "description": "Update the metadata and customData properties for a data structure, such as description, owner, and custom fields."
+                              },
+                              "response": [
+                                {
+                                  "id": "6ff73533-70b3-4ba8-8730-f1064a5b6cf1",
+                                  "name": "Metadata updated successfully",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"description\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"customData\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/meta",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-structures",
+                                        "v1",
+                                        ":dataStructureHash",
+                                        "meta"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataStructureHash"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"hash\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"format\": \"jsonschema\",\n  \"latestVersion\": \"<string>\",\n  \"deployments\": [\n    {\n      \"version\": \"<string>\",\n      \"environment\": \"DEV\",\n      \"deployedAt\": \"<dateTime>\",\n      \"deployedBy\": \"<string>\"\n    },\n    {\n      \"version\": \"<string>\",\n      \"environment\": \"PROD\",\n      \"deployedAt\": \"<dateTime>\",\n      \"deployedBy\": \"<string>\"\n    }\n  ],\n  \"meta\": {\n    \"description\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"customData\": {}\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-07-28T02:57:16.000Z",
+                                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                                  "uid": "35240-6ff73533-70b3-4ba8-8730-f1064a5b6cf1"
+                                },
+                                {
+                                  "id": "b9370adf-5ce7-47c3-8978-8cb2d7da50c2",
+                                  "name": "Invalid metadata",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"description\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"customData\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/meta",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-structures",
+                                        "v1",
+                                        ":dataStructureHash",
+                                        "meta"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataStructureHash"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:57:16.000Z",
+                                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                                  "uid": "35240-b9370adf-5ce7-47c3-8978-8cb2d7da50c2"
+                                },
+                                {
+                                  "id": "0511da39-ab29-4c48-ae35-67f13257491a",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"description\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"customData\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/meta",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-structures",
+                                        "v1",
+                                        ":dataStructureHash",
+                                        "meta"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataStructureHash"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:57:16.000Z",
+                                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                                  "uid": "35240-0511da39-ab29-4c48-ae35-67f13257491a"
+                                },
+                                {
+                                  "id": "3528e43c-1762-4636-a204-46341ac72d3e",
+                                  "name": "Data structure not found",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"description\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"customData\": {}\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash/meta",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-structures",
+                                        "v1",
+                                        ":dataStructureHash",
+                                        "meta"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataStructureHash"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:57:16.000Z",
+                                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                                  "uid": "35240-3528e43c-1762-4636-a204-46341ac72d3e"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-c0f8db9d-ea69-47e3-9269-2a05b5027c74"
+                            }
+                          ],
+                          "id": "ef5eced4-4b3c-43cf-8444-448bdb82307f",
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-ef5eced4-4b3c-43cf-8444-448bdb82307f"
+                        },
+                        {
+                          "name": "Get Data Structure",
+                          "id": "e049c045-4422-472e-b69c-7891bec3e829",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-structures",
+                                "v1",
+                                ":dataStructureHash"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "aeb37a25-bf70-4098-a7aa-7f63efc18402",
+                                  "key": "organizationId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The Snowplow organization UUID"
+                                },
+                                {
+                                  "id": "bcd647bc-3cc1-4284-9ae8-dcc4b6da4956",
+                                  "key": "dataStructureHash",
+                                  "value": "<string>",
+                                  "description": "(Required) The SHA-256 hash identifier of the data structure"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve a specific data structure by its SHA-256 hash identifier, including all versions and metadata."
+                          },
+                          "response": [
+                            {
+                              "id": "427f6376-5c31-4137-a759-b03cec20c480",
+                              "name": "Data structure retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    ":dataStructureHash"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataStructureHash"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"hash\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"name\": \"<string>\",\n  \"format\": \"jsonschema\",\n  \"latestVersion\": \"<string>\",\n  \"deployments\": [\n    {\n      \"version\": \"<string>\",\n      \"environment\": \"DEV\",\n      \"deployedAt\": \"<dateTime>\",\n      \"deployedBy\": \"<string>\"\n    },\n    {\n      \"version\": \"<string>\",\n      \"environment\": \"PROD\",\n      \"deployedAt\": \"<dateTime>\",\n      \"deployedBy\": \"<string>\"\n    }\n  ],\n  \"meta\": {\n    \"description\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"customData\": {}\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-427f6376-5c31-4137-a759-b03cec20c480"
+                            },
+                            {
+                              "id": "f8603a37-8a0a-463a-b921-16ba54b9f5e6",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    ":dataStructureHash"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataStructureHash"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-f8603a37-8a0a-463a-b921-16ba54b9f5e6"
+                            },
+                            {
+                              "id": "c59e4cf4-159b-4024-a758-25b3072d32bf",
+                              "name": "Data structure not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/:dataStructureHash",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    ":dataStructureHash"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataStructureHash"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-c59e4cf4-159b-4024-a758-25b3072d32bf"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-e049c045-4422-472e-b69c-7891bec3e829"
+                        }
+                      ],
+                      "id": "33d90c4a-de7f-47df-9074-28fc00448720",
+                      "createdAt": "2026-07-28T02:57:16.000Z",
+                      "updatedAt": "2026-07-28T02:57:16.000Z",
+                      "uid": "35240-33d90c4a-de7f-47df-9074-28fc00448720"
+                    },
+                    {
+                      "name": "validation-requests",
+                      "item": [
+                        {
+                          "name": "Validate Data Structure",
+                          "id": "383f43ac-e9c5-4c41-92ec-1c869c92a001",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"meta\": {\n    \"vendor\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"data\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/validation-requests",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-structures",
+                                "v1",
+                                "validation-requests"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "569cf766-88c9-41fd-97f2-074ca2765c99",
+                                  "key": "organizationId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The Snowplow organization UUID"
+                                }
+                              ]
+                            },
+                            "description": "Validate that a schema is in proper JSON format and complies with warehouse (Redshift, Snowflake, BigQuery, Databricks) requirements before deployment."
+                          },
+                          "response": [
+                            {
+                              "id": "a925dec7-27f4-441b-b9ad-e19c3523abf5",
+                              "name": "Validation result returned",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"meta\": {\n    \"vendor\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"data\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/validation-requests",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    "validation-requests"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"valid\": \"<boolean>\",\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"location\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"location\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-a925dec7-27f4-441b-b9ad-e19c3523abf5"
+                            },
+                            {
+                              "id": "aee9fddd-83f0-4417-a04a-845c72371d1d",
+                              "name": "Invalid schema format",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"meta\": {\n    \"vendor\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"data\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/validation-requests",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    "validation-requests"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-aee9fddd-83f0-4417-a04a-845c72371d1d"
+                            },
+                            {
+                              "id": "6ac4c694-6b8e-4c62-bae6-e9beb55726b9",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"meta\": {\n    \"vendor\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"data\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/validation-requests",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    "validation-requests"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-6ac4c694-6b8e-4c62-bae6-e9beb55726b9"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-383f43ac-e9c5-4c41-92ec-1c869c92a001"
+                        }
+                      ],
+                      "id": "9745f7b7-d430-42d4-b647-2ed150cfc80c",
+                      "createdAt": "2026-07-28T02:57:16.000Z",
+                      "updatedAt": "2026-07-28T02:57:16.000Z",
+                      "uid": "35240-9745f7b7-d430-42d4-b647-2ed150cfc80c"
+                    },
+                    {
+                      "name": "deployment-requests",
+                      "item": [
+                        {
+                          "name": "Deploy Data Structure",
+                          "id": "16890b5c-a991-4e72-92b1-feae33a54eec",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"dataStructureHash\": \"<string>\",\n  \"version\": \"<string>\",\n  \"target\": \"VALIDATED\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/deployment-requests",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-structures",
+                                "v1",
+                                "deployment-requests"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "70bc0905-3bd2-4162-8377-210763ec23a9",
+                                  "key": "organizationId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The Snowplow organization UUID"
+                                }
+                              ]
+                            },
+                            "description": "Deploy a data structure to a registry environment. Environments progress from VALIDATED \u2192 DEV \u2192 PROD. Each deployment makes the schema available to Snowplow pipelines in that environment."
+                          },
+                          "response": [
+                            {
+                              "id": "b749e6d3-05c3-4fa1-9e30-394d482af25a",
+                              "name": "Deployment request submitted successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"dataStructureHash\": \"<string>\",\n  \"version\": \"<string>\",\n  \"target\": \"VALIDATED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/deployment-requests",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    "deployment-requests"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"version\": \"<string>\",\n  \"environment\": \"VALIDATED\",\n  \"deployedAt\": \"<dateTime>\",\n  \"deployedBy\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-b749e6d3-05c3-4fa1-9e30-394d482af25a"
+                            },
+                            {
+                              "id": "1c98d379-49c4-4454-b635-b957f6ca0926",
+                              "name": "Invalid deployment request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"dataStructureHash\": \"<string>\",\n  \"version\": \"<string>\",\n  \"target\": \"VALIDATED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/deployment-requests",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    "deployment-requests"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-1c98d379-49c4-4454-b635-b957f6ca0926"
+                            },
+                            {
+                              "id": "a6acc812-2492-4644-9858-8534f7e56b42",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"dataStructureHash\": \"<string>\",\n  \"version\": \"<string>\",\n  \"target\": \"VALIDATED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/deployment-requests",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    "deployment-requests"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-a6acc812-2492-4644-9858-8534f7e56b42"
+                            },
+                            {
+                              "id": "e2260c9b-7a74-4e97-8b9b-38862a33df48",
+                              "name": "Schema version already deployed to this environment",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"dataStructureHash\": \"<string>\",\n  \"version\": \"<string>\",\n  \"target\": \"VALIDATED\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1/deployment-requests",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-structures",
+                                    "v1",
+                                    "deployment-requests"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Conflict",
+                              "code": 409,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:16.000Z",
+                              "updatedAt": "2026-07-28T02:57:16.000Z",
+                              "uid": "35240-e2260c9b-7a74-4e97-8b9b-38862a33df48"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-16890b5c-a991-4e72-92b1-feae33a54eec"
+                        }
+                      ],
+                      "id": "5e244f22-e5b8-4f8e-9a6e-e6d64a0cf32f",
+                      "createdAt": "2026-07-28T02:57:16.000Z",
+                      "updatedAt": "2026-07-28T02:57:16.000Z",
+                      "uid": "35240-5e244f22-e5b8-4f8e-9a6e-e6d64a0cf32f"
+                    },
+                    {
+                      "name": "List Data Structures",
+                      "id": "0def3856-643d-4f5d-a696-eac1a1274163",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1?vendor=<string>&name=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "data-structures",
+                            "v1"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by schema vendor namespace",
+                              "key": "vendor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by schema name",
+                              "key": "name",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "90b7958d-e6a6-4843-80fb-537fdda3b252",
+                              "key": "organizationId",
+                              "value": "<uuid>",
+                              "description": "(Required) The Snowplow organization UUID"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a list of all data structures (JSON schemas) in the organization. Supports optional filtering by vendor and schema name."
+                      },
+                      "response": [
+                        {
+                          "id": "0adfbc84-4914-49fb-9c83-a4444b72f393",
+                          "name": "List of data structures returned successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1?vendor=<string>&name=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-structures",
+                                "v1"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by schema vendor namespace",
+                                  "key": "vendor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by schema name",
+                                  "key": "name",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"hash\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"jsonschema\",\n    \"latestVersion\": \"<string>\",\n    \"deployments\": [\n      {\n        \"version\": \"<string>\",\n        \"environment\": \"PROD\",\n        \"deployedAt\": \"<dateTime>\",\n        \"deployedBy\": \"<string>\"\n      },\n      {\n        \"version\": \"<string>\",\n        \"environment\": \"VALIDATED\",\n        \"deployedAt\": \"<dateTime>\",\n        \"deployedBy\": \"<string>\"\n      }\n    ],\n    \"meta\": {\n      \"description\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"customData\": {}\n    },\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"hash\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"name\": \"<string>\",\n    \"format\": \"jsonschema\",\n    \"latestVersion\": \"<string>\",\n    \"deployments\": [\n      {\n        \"version\": \"<string>\",\n        \"environment\": \"DEV\",\n        \"deployedAt\": \"<dateTime>\",\n        \"deployedBy\": \"<string>\"\n      },\n      {\n        \"version\": \"<string>\",\n        \"environment\": \"DEV\",\n        \"deployedAt\": \"<dateTime>\",\n        \"deployedBy\": \"<string>\"\n      }\n    ],\n    \"meta\": {\n      \"description\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"customData\": {}\n    },\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]",
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-0adfbc84-4914-49fb-9c83-a4444b72f393"
+                        },
+                        {
+                          "id": "a8cc5fcd-bf2e-4aaa-9e22-261c45ded241",
+                          "name": "Unauthorized - invalid or expired token",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1?vendor=<string>&name=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-structures",
+                                "v1"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by schema vendor namespace",
+                                  "key": "vendor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by schema name",
+                                  "key": "name",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-a8cc5fcd-bf2e-4aaa-9e22-261c45ded241"
+                        },
+                        {
+                          "id": "f562cbf0-59d1-4d6a-a465-250562ffea7d",
+                          "name": "Forbidden - insufficient permissions",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-structures/v1?vendor=<string>&name=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-structures",
+                                "v1"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by schema vendor namespace",
+                                  "key": "vendor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by schema name",
+                                  "key": "name",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:57:16.000Z",
+                          "updatedAt": "2026-07-28T02:57:16.000Z",
+                          "uid": "35240-f562cbf0-59d1-4d6a-a465-250562ffea7d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:57:16.000Z",
+                      "updatedAt": "2026-07-28T02:57:16.000Z",
+                      "uid": "35240-0def3856-643d-4f5d-a696-eac1a1274163"
+                    }
+                  ],
+                  "id": "3522f6cd-1b2d-4827-bf19-d5bb47fa5189",
+                  "createdAt": "2026-07-28T02:57:16.000Z",
+                  "updatedAt": "2026-07-28T02:57:16.000Z",
+                  "uid": "35240-3522f6cd-1b2d-4827-bf19-d5bb47fa5189"
+                }
+              ],
+              "id": "3cd1545e-c22b-4797-b5fb-ee04e85030c2",
+              "createdAt": "2026-07-28T02:57:16.000Z",
+              "updatedAt": "2026-07-28T02:57:16.000Z",
+              "uid": "35240-3cd1545e-c22b-4797-b5fb-ee04e85030c2"
+            }
+          ],
+          "id": "c7c3f7b3-f543-4edf-a699-46e7d7db191d",
+          "createdAt": "2026-07-28T02:57:16.000Z",
+          "updatedAt": "2026-07-28T02:57:16.000Z",
+          "uid": "35240-c7c3f7b3-f543-4edf-a699-46e7d7db191d"
+        }
+      ],
+      "id": "7d336c59-5ee4-4a4b-851b-c1a50c6ecae9",
+      "createdAt": "2026-07-28T02:57:16.000Z",
+      "updatedAt": "2026-07-28T02:57:16.000Z",
+      "uid": "35240-7d336c59-5ee4-4a4b-851b-c1a50c6ecae9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://console.snowplowanalytics.com/api/msc/v1"
+    }
+  ]
+}

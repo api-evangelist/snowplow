@@ -1,0 +1,1145 @@
+{
+  "info": {
+    "_postman_id": "386d95cf-09e1-4322-917c-ebed47e0f14a",
+    "name": "Snowplow Console Authentication Data Products API",
+    "description": "The Snowplow Console API provides programmatic management of the Snowplow behavioral data platform. Covers data structures (JSON schemas), data products (tracking plans), event specifications, and credentials management. All endpoints are scoped to an organization and require JWT bearer authentication obtained via the Credentials API.\n\nContact Support:\n Name: Snowplow Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:15.000Z",
+    "updatedAt": "2026-07-28T02:57:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-386d95cf-09e1-4322-917c-ebed47e0f14a"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organizationId}",
+          "item": [
+            {
+              "name": "data-products",
+              "item": [
+                {
+                  "name": "v2",
+                  "item": [
+                    {
+                      "name": "{dataProductId}",
+                      "item": [
+                        {
+                          "name": "history",
+                          "item": [
+                            {
+                              "name": "Get Data Product History",
+                              "id": "b08e0cb3-4de9-46ce-8a4f-a4d8ec24fe4f",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId/history",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-products",
+                                    "v2",
+                                    ":dataProductId",
+                                    "history"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "21bc52a6-aa0a-462d-a2ed-af5e62cfda4f",
+                                      "key": "organizationId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The Snowplow organization UUID"
+                                    },
+                                    {
+                                      "id": "fd5c17b3-0ade-4535-b0fd-d1f3da3f6770",
+                                      "key": "dataProductId",
+                                      "value": "<uuid>",
+                                      "description": "(Required) The unique identifier of the data product"
+                                    }
+                                  ]
+                                },
+                                "description": "Fetch the change log for a data product with filtering options by date range and change type."
+                              },
+                              "response": [
+                                {
+                                  "id": "87268249-66a8-4b23-858f-410e4639685f",
+                                  "name": "Change history retrieved successfully",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId/history",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-products",
+                                        "v2",
+                                        ":dataProductId",
+                                        "history"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataProductId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"user\": \"<string>\",\n    \"changeType\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"user\": \"<string>\",\n    \"changeType\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n]",
+                                  "createdAt": "2026-07-28T02:57:15.000Z",
+                                  "updatedAt": "2026-07-28T02:57:15.000Z",
+                                  "uid": "35240-87268249-66a8-4b23-858f-410e4639685f"
+                                },
+                                {
+                                  "id": "6e1db502-18c4-4624-9372-92a4633fc9b0",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId/history",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-products",
+                                        "v2",
+                                        ":dataProductId",
+                                        "history"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataProductId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:57:15.000Z",
+                                  "updatedAt": "2026-07-28T02:57:15.000Z",
+                                  "uid": "35240-6e1db502-18c4-4624-9372-92a4633fc9b0"
+                                },
+                                {
+                                  "id": "3e2a577e-38d4-4a60-8c3b-0d78cd10603f",
+                                  "name": "Data product not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId/history",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "data-products",
+                                        "v2",
+                                        ":dataProductId",
+                                        "history"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "dataProductId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:57:15.000Z",
+                                  "updatedAt": "2026-07-28T02:57:15.000Z",
+                                  "uid": "35240-3e2a577e-38d4-4a60-8c3b-0d78cd10603f"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:57:15.000Z",
+                              "updatedAt": "2026-07-28T02:57:15.000Z",
+                              "uid": "35240-b08e0cb3-4de9-46ce-8a4f-a4d8ec24fe4f"
+                            }
+                          ],
+                          "id": "7e05b006-dd3f-4deb-959b-317439bdedf0",
+                          "createdAt": "2026-07-28T02:57:15.000Z",
+                          "updatedAt": "2026-07-28T02:57:15.000Z",
+                          "uid": "35240-7e05b006-dd3f-4deb-959b-317439bdedf0"
+                        },
+                        {
+                          "name": "Get Data Product",
+                          "id": "a85b7823-d58c-4468-9508-599a0aa0d3dd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-products",
+                                "v2",
+                                ":dataProductId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "92b88c99-e350-408c-b390-861d3553bc28",
+                                  "key": "organizationId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The Snowplow organization UUID"
+                                },
+                                {
+                                  "id": "273f2d6b-eeaa-483b-9d48-40337117a6d7",
+                                  "key": "dataProductId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the data product"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve details for a specific data product including all associated event specifications."
+                          },
+                          "response": [
+                            {
+                              "id": "c8cc5fd1-3359-42c7-ac7c-45baf84b6516",
+                              "name": "Data product retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-products",
+                                    "v2",
+                                    ":dataProductId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataProductId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"deprecated\",\n  \"domain\": \"<string>\",\n  \"eventSpecificationCount\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:57:15.000Z",
+                              "updatedAt": "2026-07-28T02:57:15.000Z",
+                              "uid": "35240-c8cc5fd1-3359-42c7-ac7c-45baf84b6516"
+                            },
+                            {
+                              "id": "df3e41e0-d2f0-4c95-99f1-5d5c62d41427",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-products",
+                                    "v2",
+                                    ":dataProductId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataProductId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:15.000Z",
+                              "updatedAt": "2026-07-28T02:57:15.000Z",
+                              "uid": "35240-df3e41e0-d2f0-4c95-99f1-5d5c62d41427"
+                            },
+                            {
+                              "id": "e879f24b-e2f7-467d-ac4e-41dd0f771c7c",
+                              "name": "Data product not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-products",
+                                    "v2",
+                                    ":dataProductId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataProductId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:15.000Z",
+                              "updatedAt": "2026-07-28T02:57:15.000Z",
+                              "uid": "35240-e879f24b-e2f7-467d-ac4e-41dd0f771c7c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:57:15.000Z",
+                          "updatedAt": "2026-07-28T02:57:15.000Z",
+                          "uid": "35240-a85b7823-d58c-4468-9508-599a0aa0d3dd"
+                        },
+                        {
+                          "name": "Update Data Product",
+                          "id": "7b62aa2e-21a3-433e-b99a-4c7d723a9c6d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"draft\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-products",
+                                "v2",
+                                ":dataProductId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8ac95fbd-caef-4fc6-8dbe-6f94b018ccbe",
+                                  "key": "organizationId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The Snowplow organization UUID"
+                                },
+                                {
+                                  "id": "e2ef4da0-54c3-4864-9339-c44b3cd2dd38",
+                                  "key": "dataProductId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The unique identifier of the data product"
+                                }
+                              ]
+                            },
+                            "description": "Update an existing data product. Requires a status field in the request body."
+                          },
+                          "response": [
+                            {
+                              "id": "cbb34238-4962-4f08-a828-1243495e528b",
+                              "name": "Data product updated successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"draft\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-products",
+                                    "v2",
+                                    ":dataProductId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataProductId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"deprecated\",\n  \"domain\": \"<string>\",\n  \"eventSpecificationCount\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:57:15.000Z",
+                              "updatedAt": "2026-07-28T02:57:15.000Z",
+                              "uid": "35240-cbb34238-4962-4f08-a828-1243495e528b"
+                            },
+                            {
+                              "id": "efe127b3-db85-4518-ab1f-b8192a94f5b0",
+                              "name": "Invalid request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"draft\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-products",
+                                    "v2",
+                                    ":dataProductId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataProductId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:15.000Z",
+                              "updatedAt": "2026-07-28T02:57:15.000Z",
+                              "uid": "35240-efe127b3-db85-4518-ab1f-b8192a94f5b0"
+                            },
+                            {
+                              "id": "ebc52772-6e6c-4560-a6c3-ec5a7dc48e2c",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"draft\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-products",
+                                    "v2",
+                                    ":dataProductId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataProductId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:15.000Z",
+                              "updatedAt": "2026-07-28T02:57:15.000Z",
+                              "uid": "35240-ebc52772-6e6c-4560-a6c3-ec5a7dc48e2c"
+                            },
+                            {
+                              "id": "fd2cde6d-bf31-4701-a246-64976ce7aea0",
+                              "name": "Data product not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"status\": \"draft\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2/:dataProductId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "data-products",
+                                    "v2",
+                                    ":dataProductId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "dataProductId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:15.000Z",
+                              "updatedAt": "2026-07-28T02:57:15.000Z",
+                              "uid": "35240-fd2cde6d-bf31-4701-a246-64976ce7aea0"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:57:15.000Z",
+                          "updatedAt": "2026-07-28T02:57:15.000Z",
+                          "uid": "35240-7b62aa2e-21a3-433e-b99a-4c7d723a9c6d"
+                        }
+                      ],
+                      "id": "fdfb2693-79a8-44b7-9e5e-2718f6c7bde9",
+                      "createdAt": "2026-07-28T02:57:15.000Z",
+                      "updatedAt": "2026-07-28T02:57:15.000Z",
+                      "uid": "35240-fdfb2693-79a8-44b7-9e5e-2718f6c7bde9"
+                    },
+                    {
+                      "name": "List Data Products",
+                      "id": "80a57f12-6444-48c4-ba97-f51e6aa3a283",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "data-products",
+                            "v2"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f0209ffa-8a52-4206-ad8c-3764019a7518",
+                              "key": "organizationId",
+                              "value": "<uuid>",
+                              "description": "(Required) The Snowplow organization UUID"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a comprehensive list of all data products (tracking plans) in the organization, including their associated event specifications."
+                      },
+                      "response": [
+                        {
+                          "id": "5944e7df-247f-41a7-88d2-9fe64c649b44",
+                          "name": "List of data products returned successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-products",
+                                "v2"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"status\": \"active\",\n    \"domain\": \"<string>\",\n    \"eventSpecificationCount\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"status\": \"draft\",\n    \"domain\": \"<string>\",\n    \"eventSpecificationCount\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]",
+                          "createdAt": "2026-07-28T02:57:15.000Z",
+                          "updatedAt": "2026-07-28T02:57:15.000Z",
+                          "uid": "35240-5944e7df-247f-41a7-88d2-9fe64c649b44"
+                        },
+                        {
+                          "id": "2b1b41ed-c862-4551-8761-4e792e274423",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-products",
+                                "v2"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:57:15.000Z",
+                          "updatedAt": "2026-07-28T02:57:15.000Z",
+                          "uid": "35240-2b1b41ed-c862-4551-8761-4e792e274423"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:57:15.000Z",
+                      "updatedAt": "2026-07-28T02:57:15.000Z",
+                      "uid": "35240-80a57f12-6444-48c4-ba97-f51e6aa3a283"
+                    },
+                    {
+                      "name": "Create Data Product",
+                      "id": "24a39f44-a9b8-4d23-a350-2952f7a3d8d3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "data-products",
+                            "v2"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d56c0a57-4d58-4efe-8844-c12197ec7ec8",
+                              "key": "organizationId",
+                              "value": "<uuid>",
+                              "description": "(Required) The Snowplow organization UUID"
+                            }
+                          ]
+                        },
+                        "description": "Create a new data product (tracking plan) with a name and optional description and domain metadata."
+                      },
+                      "response": [
+                        {
+                          "id": "5e950820-e5a9-4b55-9dd4-c9d5ebe6b597",
+                          "name": "Data product created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-products",
+                                "v2"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"deprecated\",\n  \"domain\": \"<string>\",\n  \"eventSpecificationCount\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:57:15.000Z",
+                          "updatedAt": "2026-07-28T02:57:15.000Z",
+                          "uid": "35240-5e950820-e5a9-4b55-9dd4-c9d5ebe6b597"
+                        },
+                        {
+                          "id": "8e76428a-1a98-4421-a4c8-2641559a3c82",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-products",
+                                "v2"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:57:15.000Z",
+                          "updatedAt": "2026-07-28T02:57:15.000Z",
+                          "uid": "35240-8e76428a-1a98-4421-a4c8-2641559a3c82"
+                        },
+                        {
+                          "id": "53a39920-b59b-417d-bf1a-386950077289",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"domain\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/data-products/v2",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "data-products",
+                                "v2"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:57:15.000Z",
+                          "updatedAt": "2026-07-28T02:57:15.000Z",
+                          "uid": "35240-53a39920-b59b-417d-bf1a-386950077289"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:57:15.000Z",
+                      "updatedAt": "2026-07-28T02:57:15.000Z",
+                      "uid": "35240-24a39f44-a9b8-4d23-a350-2952f7a3d8d3"
+                    }
+                  ],
+                  "id": "5c491aa0-ff15-4a8e-837a-4489f6e65e0d",
+                  "createdAt": "2026-07-28T02:57:15.000Z",
+                  "updatedAt": "2026-07-28T02:57:15.000Z",
+                  "uid": "35240-5c491aa0-ff15-4a8e-837a-4489f6e65e0d"
+                }
+              ],
+              "id": "59c8e747-c301-47d6-bc66-0637630dd218",
+              "createdAt": "2026-07-28T02:57:15.000Z",
+              "updatedAt": "2026-07-28T02:57:15.000Z",
+              "uid": "35240-59c8e747-c301-47d6-bc66-0637630dd218"
+            }
+          ],
+          "id": "2de76a90-e79d-4e1d-b431-82360866ac25",
+          "createdAt": "2026-07-28T02:57:15.000Z",
+          "updatedAt": "2026-07-28T02:57:15.000Z",
+          "uid": "35240-2de76a90-e79d-4e1d-b431-82360866ac25"
+        }
+      ],
+      "id": "6b703e61-720a-4ae9-a419-3291d98f48c5",
+      "createdAt": "2026-07-28T02:57:15.000Z",
+      "updatedAt": "2026-07-28T02:57:15.000Z",
+      "uid": "35240-6b703e61-720a-4ae9-a419-3291d98f48c5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://console.snowplowanalytics.com/api/msc/v1"
+    }
+  ]
+}

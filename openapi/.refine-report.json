@@ -1,0 +1,18 @@
+{
+  "provider": "snowplow",
+  "sources": [
+    "snowplow-authentication-api-openapi.yml",
+    "snowplow-data-products-api-openapi.yml",
+    "snowplow-data-structures-api-openapi.yml"
+  ],
+  "outputs": [
+    "snowplow-authentication-api-openapi.yml",
+    "snowplow-data-products-api-openapi.yml",
+    "snowplow-data-structures-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

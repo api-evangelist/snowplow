@@ -1,0 +1,253 @@
+{
+  "info": {
+    "_postman_id": "03a0459b-1363-451c-9919-0c4f26dbf79f",
+    "name": "Snowplow Console Authentication API",
+    "description": "The Snowplow Console API provides programmatic management of the Snowplow behavioral data platform. Covers data structures (JSON schemas), data products (tracking plans), event specifications, and credentials management. All endpoints are scoped to an organization and require JWT bearer authentication obtained via the Credentials API.\n\nContact Support:\n Name: Snowplow Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:14.000Z",
+    "updatedAt": "2026-07-28T02:57:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-03a0459b-1363-451c-9919-0c4f26dbf79f"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organizationId}",
+          "item": [
+            {
+              "name": "credentials",
+              "item": [
+                {
+                  "name": "v3",
+                  "item": [
+                    {
+                      "name": "token",
+                      "item": [
+                        {
+                          "name": "Get Access Token",
+                          "id": "7e9f648c-c082-4579-9fb6-5305e87ddbd7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/credentials/v3/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "credentials",
+                                "v3",
+                                "token"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6d929957-3e37-427d-b021-cae094a432a0",
+                                  "key": "organizationId",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The Snowplow organization UUID"
+                                }
+                              ]
+                            },
+                            "description": "Exchange API key credentials for a JWT access token. The returned token is used to authenticate all other Console API requests. Requires both X-API-Key-ID and X-API-Key headers."
+                          },
+                          "response": [
+                            {
+                              "id": "be6d822c-fce4-4ee0-ac90-86502e11e973",
+                              "name": "JWT access token returned successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/credentials/v3/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "credentials",
+                                    "v3",
+                                    "token"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"accessToken\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:57:14.000Z",
+                              "updatedAt": "2026-07-28T02:57:14.000Z",
+                              "uid": "35240-be6d822c-fce4-4ee0-ac90-86502e11e973"
+                            },
+                            {
+                              "id": "1ab06e46-4fb8-421d-bf89-3fbef4930f2e",
+                              "name": "Invalid API key credentials",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/credentials/v3/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "credentials",
+                                    "v3",
+                                    "token"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:57:14.000Z",
+                              "updatedAt": "2026-07-28T02:57:14.000Z",
+                              "uid": "35240-1ab06e46-4fb8-421d-bf89-3fbef4930f2e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:57:14.000Z",
+                          "updatedAt": "2026-07-28T02:57:14.000Z",
+                          "uid": "35240-7e9f648c-c082-4579-9fb6-5305e87ddbd7"
+                        }
+                      ],
+                      "id": "6e15883a-7800-41ab-8faa-5ba6efc1bc01",
+                      "createdAt": "2026-07-28T02:57:14.000Z",
+                      "updatedAt": "2026-07-28T02:57:14.000Z",
+                      "uid": "35240-6e15883a-7800-41ab-8faa-5ba6efc1bc01"
+                    }
+                  ],
+                  "id": "6811aa68-7610-4a4f-96ab-b9c13cd77d68",
+                  "createdAt": "2026-07-28T02:57:14.000Z",
+                  "updatedAt": "2026-07-28T02:57:14.000Z",
+                  "uid": "35240-6811aa68-7610-4a4f-96ab-b9c13cd77d68"
+                }
+              ],
+              "id": "b6235436-f46b-45f4-aee7-9b9d2ff65d10",
+              "createdAt": "2026-07-28T02:57:14.000Z",
+              "updatedAt": "2026-07-28T02:57:14.000Z",
+              "uid": "35240-b6235436-f46b-45f4-aee7-9b9d2ff65d10"
+            }
+          ],
+          "id": "254c086f-cdd6-46a2-b3b3-cecc2b046642",
+          "createdAt": "2026-07-28T02:57:14.000Z",
+          "updatedAt": "2026-07-28T02:57:14.000Z",
+          "uid": "35240-254c086f-cdd6-46a2-b3b3-cecc2b046642"
+        }
+      ],
+      "id": "b2c5b229-df77-4bee-b97b-8d4aac0f1282",
+      "createdAt": "2026-07-28T02:57:14.000Z",
+      "updatedAt": "2026-07-28T02:57:14.000Z",
+      "uid": "35240-b2c5b229-df77-4bee-b97b-8d4aac0f1282"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://console.snowplowanalytics.com/api/msc/v1"
+    }
+  ]
+}
