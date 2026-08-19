@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowplow Console Authentication Data Products API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Data Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              }
+            ]
+          },
+          "docs": "Retrieve a comprehensive list of all data products (tracking plans) in the organization, including their associated event specifications."
+        },
+        {
+          "info": {
+            "name": "Create Data Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data product (tracking plan) with a name and optional description and domain metadata."
+        },
+        {
+          "info": {
+            "name": "Get Data Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2/:dataProductId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataProductId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data product"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific data product including all associated event specifications."
+        },
+        {
+          "info": {
+            "name": "Update Data Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2/:dataProductId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataProductId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data product"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing data product. Requires a status field in the request body."
+        },
+        {
+          "info": {
+            "name": "Get Data Product History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://console.snowplowanalytics.com/api/msc/v1/organizations/:organizationId/data-products/v2/:dataProductId/history",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Snowplow organization UUID"
+              },
+              {
+                "name": "dataProductId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the data product"
+              }
+            ]
+          },
+          "docs": "Fetch the change log for a data product with filtering options by date range and change type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
