@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Snowplow Console Authentication Data Products API
+  title: Snowplow Console Data Products API
   description: The Snowplow Console API provides programmatic management of the Snowplow behavioral data platform. Covers data structures (JSON schemas), data products (tracking plans), event specifications, and credentials management. All endpoints are scoped to an organization and require JWT bearer authentication obtained via the Credentials API.
   version: '1.0'
   contact:
@@ -134,47 +134,7 @@ paths:
         '404':
           description: Data product not found
 components:
-  parameters:
-    dataProductId:
-      name: dataProductId
-      in: path
-      required: true
-      description: The unique identifier of the data product
-      schema:
-        type: string
-        format: uuid
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      description: The Snowplow organization UUID
-      schema:
-        type: string
-        format: uuid
   schemas:
-    DataProductCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        domain:
-          type: string
-    HistoryEntry:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        user:
-          type: string
-        changeType:
-          type: string
-        description:
-          type: string
     DataProduct:
       type: object
       properties:
@@ -201,6 +161,17 @@ components:
         updatedAt:
           type: string
           format: date-time
+    DataProductCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        domain:
+          type: string
     DataProductUpdate:
       type: object
       required:
@@ -216,6 +187,35 @@ components:
           - active
           - draft
           - deprecated
+    HistoryEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        user:
+          type: string
+        changeType:
+          type: string
+        description:
+          type: string
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
+    dataProductId:
+      name: dataProductId
+      in: path
+      required: true
+      description: The unique identifier of the data product
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Snowplow Console Authentication Data Structures API
+  title: Snowplow Console Data Structures API
   description: The Snowplow Console API provides programmatic management of the Snowplow behavioral data platform. Covers data structures (JSON schemas), data products (tracking plans), event specifications, and credentials management. All endpoints are scoped to an organization and require JWT bearer authentication obtained via the Credentials API.
   version: '1.0'
   contact:
@@ -204,29 +204,6 @@ paths:
           description: Data structure not found
 components:
   schemas:
-    DataStructureMetaUpdate:
-      type: object
-      properties:
-        description:
-          type: string
-        owner:
-          type: string
-        customData:
-          type: object
-    ValidationResponse:
-      type: object
-      properties:
-        valid:
-          type: boolean
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-              location:
-                type: string
     DeploymentRequest:
       type: object
       required:
@@ -244,6 +221,15 @@ components:
           - VALIDATED
           - DEV
           - PROD
+    DataStructureMetaUpdate:
+      type: object
+      properties:
+        description:
+          type: string
+        owner:
+          type: string
+        customData:
+          type: object
     DataStructure:
       type: object
       properties:
@@ -283,6 +269,39 @@ components:
         updatedAt:
           type: string
           format: date-time
+    DataStructureVersion:
+      type: object
+      properties:
+        hash:
+          type: string
+        version:
+          type: string
+          description: Version number in format major-minor-patch (e.g., 1-0-0)
+        schema:
+          type: object
+          description: The full JSON Schema definition for this version
+        deployedEnvironments:
+          type: array
+          items:
+            type: string
+            enum:
+            - VALIDATED
+            - DEV
+            - PROD
+    ValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              location:
+                type: string
     ValidationRequest:
       type: object
       required:
@@ -319,33 +338,7 @@ components:
           format: date-time
         deployedBy:
           type: string
-    DataStructureVersion:
-      type: object
-      properties:
-        hash:
-          type: string
-        version:
-          type: string
-          description: Version number in format major-minor-patch (e.g., 1-0-0)
-        schema:
-          type: object
-          description: The full JSON Schema definition for this version
-        deployedEnvironments:
-          type: array
-          items:
-            type: string
-            enum:
-            - VALIDATED
-            - DEV
-            - PROD
   parameters:
-    dataStructureHash:
-      name: dataStructureHash
-      in: path
-      required: true
-      description: The SHA-256 hash identifier of the data structure
-      schema:
-        type: string
     organizationId:
       name: organizationId
       in: path
@@ -354,6 +347,13 @@ components:
       schema:
         type: string
         format: uuid
+    dataStructureHash:
+      name: dataStructureHash
+      in: path
+      required: true
+      description: The SHA-256 hash identifier of the data structure
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
