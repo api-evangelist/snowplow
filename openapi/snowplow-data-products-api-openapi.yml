@@ -135,6 +135,33 @@ paths:
           description: Data product not found
 components:
   schemas:
+    HistoryEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        user:
+          type: string
+        changeType:
+          type: string
+        description:
+          type: string
+    DataProductUpdate:
+      type: object
+      required:
+      - status
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - draft
+          - deprecated
     DataProduct:
       type: object
       properties:
@@ -171,33 +198,6 @@ components:
         description:
           type: string
         domain:
-          type: string
-    DataProductUpdate:
-      type: object
-      required:
-      - status
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - draft
-          - deprecated
-    HistoryEntry:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        user:
-          type: string
-        changeType:
-          type: string
-        description:
           type: string
   parameters:
     organizationId:

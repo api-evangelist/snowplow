@@ -203,6 +203,22 @@ paths:
         '404':
           description: Data structure not found
 components:
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
+    dataStructureHash:
+      name: dataStructureHash
+      in: path
+      required: true
+      description: The SHA-256 hash identifier of the data structure
+      schema:
+        type: string
   schemas:
     DeploymentRequest:
       type: object
@@ -221,15 +237,22 @@ components:
           - VALIDATED
           - DEV
           - PROD
-    DataStructureMetaUpdate:
+    Deployment:
       type: object
       properties:
-        description:
+        version:
           type: string
-        owner:
+        environment:
           type: string
-        customData:
-          type: object
+          enum:
+          - VALIDATED
+          - DEV
+          - PROD
+        deployedAt:
+          type: string
+          format: date-time
+        deployedBy:
+          type: string
     DataStructure:
       type: object
       properties:
@@ -269,6 +292,15 @@ components:
         updatedAt:
           type: string
           format: date-time
+    DataStructureMetaUpdate:
+      type: object
+      properties:
+        description:
+          type: string
+        owner:
+          type: string
+        customData:
+          type: object
     DataStructureVersion:
       type: object
       properties:
@@ -288,20 +320,6 @@ components:
             - VALIDATED
             - DEV
             - PROD
-    ValidationResponse:
-      type: object
-      properties:
-        valid:
-          type: boolean
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-              location:
-                type: string
     ValidationRequest:
       type: object
       required:
@@ -322,38 +340,20 @@ components:
         data:
           type: object
           description: The JSON Schema to validate
-    Deployment:
+    ValidationResponse:
       type: object
       properties:
-        version:
-          type: string
-        environment:
-          type: string
-          enum:
-          - VALIDATED
-          - DEV
-          - PROD
-        deployedAt:
-          type: string
-          format: date-time
-        deployedBy:
-          type: string
-  parameters:
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      description: The Snowplow organization UUID
-      schema:
-        type: string
-        format: uuid
-    dataStructureHash:
-      name: dataStructureHash
-      in: path
-      required: true
-      description: The SHA-256 hash identifier of the data structure
-      schema:
-        type: string
+        valid:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              location:
+                type: string
   securitySchemes:
     bearerAuth:
       type: http
