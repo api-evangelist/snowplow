@@ -42,15 +42,6 @@ paths:
         '401':
           description: Invalid API key credentials
 components:
-  parameters:
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      description: The Snowplow organization UUID
-      schema:
-        type: string
-        format: uuid
   schemas:
     TokenResponse:
       type: object
@@ -62,6 +53,15 @@ components:
           type: string
           format: date-time
           description: Token expiration timestamp
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http

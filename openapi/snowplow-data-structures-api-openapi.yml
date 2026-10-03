@@ -204,6 +204,13 @@ paths:
           description: Data structure not found
 components:
   parameters:
+    dataStructureHash:
+      name: dataStructureHash
+      in: path
+      required: true
+      description: The SHA-256 hash identifier of the data structure
+      schema:
+        type: string
     organizationId:
       name: organizationId
       in: path
@@ -212,47 +219,60 @@ components:
       schema:
         type: string
         format: uuid
-    dataStructureHash:
-      name: dataStructureHash
-      in: path
-      required: true
-      description: The SHA-256 hash identifier of the data structure
-      schema:
-        type: string
   schemas:
-    DeploymentRequest:
+    DataStructureVersion:
+      type: object
+      properties:
+        hash:
+          type: string
+        version:
+          type: string
+          description: Version number in format major-minor-patch (e.g., 1-0-0)
+        schema:
+          type: object
+          description: The full JSON Schema definition for this version
+        deployedEnvironments:
+          type: array
+          items:
+            type: string
+            enum:
+            - VALIDATED
+            - DEV
+            - PROD
+    ValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              location:
+                type: string
+    ValidationRequest:
       type: object
       required:
-      - dataStructureHash
-      - version
-      - target
+      - meta
+      - data
       properties:
-        dataStructureHash:
-          type: string
-        version:
-          type: string
-        target:
-          type: string
-          enum:
-          - VALIDATED
-          - DEV
-          - PROD
-    Deployment:
-      type: object
-      properties:
-        version:
-          type: string
-        environment:
-          type: string
-          enum:
-          - VALIDATED
-          - DEV
-          - PROD
-        deployedAt:
-          type: string
-          format: date-time
-        deployedBy:
-          type: string
+        meta:
+          type: object
+          properties:
+            vendor:
+              type: string
+            name:
+              type: string
+            format:
+              type: string
+            version:
+              type: string
+        data:
+          type: object
+          description: The JSON Schema to validate
     DataStructure:
       type: object
       properties:
@@ -301,59 +321,39 @@ components:
           type: string
         customData:
           type: object
-    DataStructureVersion:
+    Deployment:
       type: object
       properties:
-        hash:
+        version:
+          type: string
+        environment:
+          type: string
+          enum:
+          - VALIDATED
+          - DEV
+          - PROD
+        deployedAt:
+          type: string
+          format: date-time
+        deployedBy:
+          type: string
+    DeploymentRequest:
+      type: object
+      required:
+      - dataStructureHash
+      - version
+      - target
+      properties:
+        dataStructureHash:
           type: string
         version:
           type: string
-          description: Version number in format major-minor-patch (e.g., 1-0-0)
-        schema:
-          type: object
-          description: The full JSON Schema definition for this version
-        deployedEnvironments:
-          type: array
-          items:
-            type: string
-            enum:
-            - VALIDATED
-            - DEV
-            - PROD
-    ValidationRequest:
-      type: object
-      required:
-      - meta
-      - data
-      properties:
-        meta:
-          type: object
-          properties:
-            vendor:
-              type: string
-            name:
-              type: string
-            format:
-              type: string
-            version:
-              type: string
-        data:
-          type: object
-          description: The JSON Schema to validate
-    ValidationResponse:
-      type: object
-      properties:
-        valid:
-          type: boolean
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-              location:
-                type: string
+        target:
+          type: string
+          enum:
+          - VALIDATED
+          - DEV
+          - PROD
   securitySchemes:
     bearerAuth:
       type: http

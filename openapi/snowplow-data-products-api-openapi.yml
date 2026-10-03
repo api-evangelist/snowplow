@@ -134,6 +134,23 @@ paths:
         '404':
           description: Data product not found
 components:
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
+    dataProductId:
+      name: dataProductId
+      in: path
+      required: true
+      description: The unique identifier of the data product
+      schema:
+        type: string
+        format: uuid
   schemas:
     HistoryEntry:
       type: object
@@ -199,23 +216,6 @@ components:
           type: string
         domain:
           type: string
-  parameters:
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      description: The Snowplow organization UUID
-      schema:
-        type: string
-        format: uuid
-    dataProductId:
-      name: dataProductId
-      in: path
-      required: true
-      description: The unique identifier of the data product
-      schema:
-        type: string
-        format: uuid
   securitySchemes:
     bearerAuth:
       type: http
