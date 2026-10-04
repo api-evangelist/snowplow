@@ -134,23 +134,6 @@ paths:
         '404':
           description: Data product not found
 components:
-  parameters:
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      description: The Snowplow organization UUID
-      schema:
-        type: string
-        format: uuid
-    dataProductId:
-      name: dataProductId
-      in: path
-      required: true
-      description: The unique identifier of the data product
-      schema:
-        type: string
-        format: uuid
   schemas:
     HistoryEntry:
       type: object
@@ -164,21 +147,6 @@ components:
           type: string
         description:
           type: string
-    DataProductUpdate:
-      type: object
-      required:
-      - status
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - draft
-          - deprecated
     DataProduct:
       type: object
       properties:
@@ -205,6 +173,21 @@ components:
         updatedAt:
           type: string
           format: date-time
+    DataProductUpdate:
+      type: object
+      required:
+      - status
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - draft
+          - deprecated
     DataProductCreate:
       type: object
       required:
@@ -216,6 +199,23 @@ components:
           type: string
         domain:
           type: string
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
+    dataProductId:
+      name: dataProductId
+      in: path
+      required: true
+      description: The unique identifier of the data product
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     bearerAuth:
       type: http
