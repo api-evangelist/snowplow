@@ -203,43 +203,23 @@ paths:
         '404':
           description: Data structure not found
 components:
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
+    dataStructureHash:
+      name: dataStructureHash
+      in: path
+      required: true
+      description: The SHA-256 hash identifier of the data structure
+      schema:
+        type: string
   schemas:
-    DataStructureVersion:
-      type: object
-      properties:
-        hash:
-          type: string
-        version:
-          type: string
-          description: Version number in format major-minor-patch (e.g., 1-0-0)
-        schema:
-          type: object
-          description: The full JSON Schema definition for this version
-        deployedEnvironments:
-          type: array
-          items:
-            type: string
-            enum:
-            - VALIDATED
-            - DEV
-            - PROD
-    DeploymentRequest:
-      type: object
-      required:
-      - dataStructureHash
-      - version
-      - target
-      properties:
-        dataStructureHash:
-          type: string
-        version:
-          type: string
-        target:
-          type: string
-          enum:
-          - VALIDATED
-          - DEV
-          - PROD
     DataStructure:
       type: object
       properties:
@@ -279,31 +259,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    DataStructureMetaUpdate:
-      type: object
-      properties:
-        description:
-          type: string
-        owner:
-          type: string
-        customData:
-          type: object
-    Deployment:
-      type: object
-      properties:
-        version:
-          type: string
-        environment:
-          type: string
-          enum:
-          - VALIDATED
-          - DEV
-          - PROD
-        deployedAt:
-          type: string
-          format: date-time
-        deployedBy:
-          type: string
     ValidationRequest:
       type: object
       required:
@@ -338,22 +293,67 @@ components:
                 type: string
               location:
                 type: string
-  parameters:
-    dataStructureHash:
-      name: dataStructureHash
-      in: path
-      required: true
-      description: The SHA-256 hash identifier of the data structure
-      schema:
-        type: string
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      description: The Snowplow organization UUID
-      schema:
-        type: string
-        format: uuid
+    Deployment:
+      type: object
+      properties:
+        version:
+          type: string
+        environment:
+          type: string
+          enum:
+          - VALIDATED
+          - DEV
+          - PROD
+        deployedAt:
+          type: string
+          format: date-time
+        deployedBy:
+          type: string
+    DataStructureVersion:
+      type: object
+      properties:
+        hash:
+          type: string
+        version:
+          type: string
+          description: Version number in format major-minor-patch (e.g., 1-0-0)
+        schema:
+          type: object
+          description: The full JSON Schema definition for this version
+        deployedEnvironments:
+          type: array
+          items:
+            type: string
+            enum:
+            - VALIDATED
+            - DEV
+            - PROD
+    DataStructureMetaUpdate:
+      type: object
+      properties:
+        description:
+          type: string
+        owner:
+          type: string
+        customData:
+          type: object
+    DeploymentRequest:
+      type: object
+      required:
+      - dataStructureHash
+      - version
+      - target
+      properties:
+        dataStructureHash:
+          type: string
+        version:
+          type: string
+        target:
+          type: string
+          enum:
+          - VALIDATED
+          - DEV
+          - PROD
   securitySchemes:
     bearerAuth:
       type: http

@@ -134,19 +134,50 @@ paths:
         '404':
           description: Data product not found
 components:
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The Snowplow organization UUID
+      schema:
+        type: string
+        format: uuid
+    dataProductId:
+      name: dataProductId
+      in: path
+      required: true
+      description: The unique identifier of the data product
+      schema:
+        type: string
+        format: uuid
   schemas:
-    HistoryEntry:
+    DataProductCreate:
       type: object
+      required:
+      - name
       properties:
-        timestamp:
-          type: string
-          format: date-time
-        user:
-          type: string
-        changeType:
+        name:
           type: string
         description:
           type: string
+        domain:
+          type: string
+    DataProductUpdate:
+      type: object
+      required:
+      - status
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - draft
+          - deprecated
     DataProduct:
       type: object
       properties:
@@ -173,49 +204,18 @@ components:
         updatedAt:
           type: string
           format: date-time
-    DataProductUpdate:
+    HistoryEntry:
       type: object
-      required:
-      - status
       properties:
-        name:
+        timestamp:
+          type: string
+          format: date-time
+        user:
+          type: string
+        changeType:
           type: string
         description:
           type: string
-        status:
-          type: string
-          enum:
-          - active
-          - draft
-          - deprecated
-    DataProductCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        domain:
-          type: string
-  parameters:
-    organizationId:
-      name: organizationId
-      in: path
-      required: true
-      description: The Snowplow organization UUID
-      schema:
-        type: string
-        format: uuid
-    dataProductId:
-      name: dataProductId
-      in: path
-      required: true
-      description: The unique identifier of the data product
-      schema:
-        type: string
-        format: uuid
   securitySchemes:
     bearerAuth:
       type: http
