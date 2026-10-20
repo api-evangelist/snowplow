@@ -16,3 +16,29 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: snowplow-databricks-marketplace
+  label: Databricks Marketplace
+  partner: databricks
+  partner_name: Databricks Marketplace
+  category: data product listing
+  type: marketplace
+  marketplace: databricks-marketplace
+  channel: distribution
+  evidence: https://marketplace.databricks.com/provider/f874299c-32b5-48d2-8dae-43487aefe472
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Databricks Marketplace (marketplace.databricks.com/api/2.0/public-marketplace-providers + public-marketplace-listings)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Snowplow
+    matched_domain: snowplow.io
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - 'Snowplow Behavioral Data: Personalizing with Propensity Scoring'
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null

@@ -16,9 +16,35 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: dbt package
+- partner_name: Databricks Marketplace
+  partner: databricks
+  partner_match: aggregator
+  type: marketplace
+  marketplace: databricks-marketplace
+  channel: distribution
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://marketplace.databricks.com/provider/f874299c-32b5-48d2-8dae-43487aefe472
+  category: data product listing
+  contract_reference:
+    register: Databricks Marketplace (marketplace.databricks.com/api/2.0/public-marketplace-providers + public-marketplace-listings)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Snowplow
+    matched_domain: snowplow.io
+    matched_by: domain
+    listings: 1
+    sample_listings:
+    - 'Snowplow Behavioral Data: Personalizing with Propensity Scoring'
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+  detected_by: sweep-data-marketplaces.py
+  detected: '2026-10-20'
 generated: '2026-10-18'
 method: searched
 checked:
 - dbt/integrations/dbt-integration-edges.yml
+- https://marketplace.databricks.com/
 source:
 - dbt/integrations/dbt-integration-edges.yml
