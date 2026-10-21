@@ -29,6 +29,36 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: snowplow-cocoapods-trunk
+  label: CocoaPods trunk
+  partner_name: CocoaPods trunk
+  category: iOS SDK (CocoaPods)
+  type: register
+  channel: package-registry
+  evidence: https://cocoapods.org/pods/SnowplowTracker
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: CocoaPods trunk (cdn.cocoapods.org Specs; github.com/CocoaPods/Specs)
+    spec_file: null
+    role: cocoapods-publisher
+    registered_name: Snowplow Analytics Ltd
+    matched_domain: snowplow.io
+    matched_by: domain
+    pods:
+    - pod: SnowplowTracker
+      version: 6.3.1
+      homepage: http://snowplow.io
+      deprecated: false
+    - pod: SnowplowTrackerO11y
+      version: 5.5.0
+      homepage: http://snowplow.io
+      deprecated: false
+    signal_note: latest podspec homepage (domain) + authors (name); pods, versions and counts are context
+    detected_by: sweep-mobile-sdk-index.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
 - slug: snowplow-dbt-dbt-package-hub
   label: dbt (dbt-package-hub)
   partner: dbt
@@ -64,6 +94,19 @@
   marketplace: terraform-registry
   channel: partner-built
   evidence: https://registry.terraform.io/providers/snowplow-devops/snowplow
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: snowplow-google-play-developer-google-play-sdk-index
+  label: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_name: Google Play Developer (Google Play SDK Index)
+  category: mobile SDK (analytics, marketing-and-engagement)
+  type: marketplace
+  marketplace: Google Play SDK Index
+  channel: partner-built
+  evidence: https://play.google.com/sdks/details/com-snowplowanalytics-snowplow-android-tracker
   source: edge
   relationship: platform-app
   status: not-a-workflow

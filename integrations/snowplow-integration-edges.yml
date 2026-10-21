@@ -24,6 +24,36 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-data-marketplaces.py
   detected: '2026-10-20'
+- partner_name: CocoaPods trunk
+  partner: null
+  partner_match: register
+  type: register
+  channel: package-registry
+  relationship: distribution-channel
+  direction: provider-built
+  evidence: https://cocoapods.org/pods/SnowplowTracker
+  category: iOS SDK (CocoaPods)
+  contract_reference:
+    register: CocoaPods trunk (cdn.cocoapods.org Specs; github.com/CocoaPods/Specs)
+    spec_file: null
+    role: cocoapods-publisher
+    registered_name: Snowplow Analytics Ltd
+    matched_domain: snowplow.io
+    matched_by: domain
+    pods:
+    - pod: SnowplowTracker
+      version: 6.3.1
+      homepage: http://snowplow.io
+      deprecated: false
+    - pod: SnowplowTrackerO11y
+      version: 5.5.0
+      homepage: http://snowplow.io
+      deprecated: false
+    signal_note: latest podspec homepage (domain) + authors (name); pods, versions and counts are context
+    detected_by: sweep-mobile-sdk-index.py
+    detected: '2026-10-21'
+  detected_by: sweep-mobile-sdk-index.py
+  first_seen: '2026-10-21'
 - partner_name: dbt (dbt-package-hub)
   partner: dbt
   partner_match: mirror
@@ -79,6 +109,25 @@ edges:
   category: infrastructure-as-code provider registry listing
   badges:
   - Verified publisher (GitHub domain-verified organization)
+- partner_name: Google Play Developer (Google Play SDK Index)
+  partner: google-play
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: Google Play SDK Index
+  evidence: https://play.google.com/sdks/details/com-snowplowanalytics-snowplow-android-tracker
+  mirror_of: google-play/integrations/google-play-integration-edges.yml
+  apps:
+  - Snowplow Android Tracker
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: mobile SDK (analytics, marketing-and-engagement)
+  publisher_verified:
+  - Registered in Google Play SDK Console
 generated: '2026-10-18'
 method: searched
 checked:
@@ -86,5 +135,10 @@ checked:
 - https://marketplace.databricks.com/
 - opentofu/integrations/opentofu-integration-edges.yml
 - terraform/integrations/terraform-integration-edges.yml
+- https://cdn.cocoapods.org/all_pods.txt
+- https://cert.appdefensealliance.org/certifications
+- https://play.google.com/sdks
+- https://search.maven.org/solrsearch/select
+- google-play/integrations/google-play-integration-edges.yml
 source:
 - dbt/integrations/dbt-integration-edges.yml
