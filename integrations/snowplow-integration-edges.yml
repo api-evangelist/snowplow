@@ -128,6 +128,39 @@ edges:
   category: mobile SDK (analytics, marketing-and-engagement)
   publisher_verified:
   - Registered in Google Play SDK Console
+- partner_name: Artifact Hub (artifact-hub)
+  partner: artifact-hub
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: artifact-hub
+  evidence: https://artifacthub.io/packages/search?repo=snowplow-devops
+  mirror_of: artifact-hub/integrations/artifact-hub-integration-edges.yml
+  apps:
+  - aws-load-balancer-controller-crds
+  - snowplow-iglu-server
+  - aws-otel-collector
+  - cert-manager-crds
+  - cert-manager-issuer
+  - cloudserviceaccount
+  - dockerconfigjson
+  - avalanche
+  - aws-target-group-binding
+  - cluster-warmer
+  - common
+  - cron-job
+  - daemonset
+  - github-actions-runners
+  - karpenter
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Artifact Hub listing (Helm chart)
+  badges:
+  - 'Verified publisher (Artifact Hub verified publisher: repository ownership proven)'
 generated: '2026-10-18'
 method: searched
 checked:
@@ -140,5 +173,6 @@ checked:
 - https://play.google.com/sdks
 - https://search.maven.org/solrsearch/select
 - google-play/integrations/google-play-integration-edges.yml
+- artifact-hub/integrations/artifact-hub-integration-edges.yml
 source:
 - dbt/integrations/dbt-integration-edges.yml
